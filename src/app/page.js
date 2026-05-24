@@ -39,42 +39,140 @@ const navItems = ["Home", "About", "Skills", "Projects", "Experience", "Contact"
 const skills = {
   Frontend: ["React", "Next.js", "Tailwind", "Framer Motion"],
   Backend: ["Node.js", "Express", "REST APIs", "Firebase"],
-  Database: ["MongoDB", "Redis", "PostgreSQL"],
-  Networking: ["Sockets", "Wireshark", "TCP/IP", "UDP"],
-  DevOps: ["Docker", "Linux", "BullMQ", "GitHub Actions"],
+  Database: ["MongoDB", "MySQL", "PostgreSQL"],
+  DataScience: ["Python", "Pandas", "NumPy", "Machine Learning"],
+  DevOps: ["Docker", "Linux",  "GitHub Actions"],
   Tools: ["Git", "VS Code", "Postman", "Figma"],
 };
 
 const projects = [
   {
-    title: "PDF Toolkit Platform",
-    desc: "AI-powered PDF processing SaaS with queues, auth, analytics, and cloud workflows.",
-    tags: ["Next.js", "Redis", "BullMQ", "MongoDB"],
+    title: "HEALTHCARE AI",
+    desc: "A ML project that predicts number of days to stay in hospital, bill amount prediction, and outcome prediction based on symptoms.",
+    tags: ["Machine Learning", "Healthcare AI", "Prediction Systems"],
+    features: ["Stay days prediction", "Bill amount prediction", "Outcome prediction"],
+    preview: "Clinical Forecast Engine",
+    accent: "from-fuchsia-500/35 via-violet-500/25 to-cyan-400/30",
+    size: "xl:col-span-2",
+    links: { live: "#", github: "#" },
   },
   {
-    title: "Expense Tracking Dashboard",
-    desc: "Modern analytics dashboard with authentication and budgeting system.",
-    tags: ["React", "Charts", "MongoDB"],
+    title: "SMART LOAN RISK PREDICTOR",
+    desc: "An ML project that takes form input values to predict whether a loan request will be approved or not.",
+    tags: ["ML Classification", "Risk Analysis", "Form Intelligence"],
+    features: ["Input-driven predictions", "Loan approval scoring"],
+    preview: "Risk Scoring Matrix",
+    accent: "from-cyan-500/35 via-blue-500/25 to-indigo-500/30",
+    links: { live: "#", github: "#" },
   },
   {
-    title: "Real-Time Chat App",
-    desc: "Low-latency socket-based communication platform with rooms and notifications.",
-    tags: ["Socket.io", "Node.js", "Express"],
+    title: "PORTFOLIO APP",
+    desc: "Designed a Portfolio application using Next.js as frontend with Supabase as backend.",
+    tags: ["Next.js", "Supabase", "Frontend Systems"],
+    features: ["Dynamic portfolio management", "Backend-powered content flow"],
+    preview: "Personal Brand Platform",
+    accent: "from-violet-500/35 via-sky-500/20 to-cyan-300/30",
+    links: { live: "#", github: "#" },
   },
   {
-    title: "Packet Analyzer UI",
-    desc: "Modern networking dashboard inspired by packet inspection tools.",
-    tags: ["Networking", "Wireshark", "Realtime"],
+    title: "HEALTHSYNC",
+    desc: "A full-stack doctor-patient consultation platform built using React (Vite), designed to streamline appointment booking, patient management, real-time communication, and responsive medical dashboard UI.",
+    tags: ["React (Vite)", "Full Stack", "Realtime Communication"],
+    features: [
+      "Appointment booking",
+      "Patient management",
+      "Real-time communication",
+      "Responsive medical dashboard UI",
+    ],
+    preview: "Consultation Cloud",
+    accent: "from-emerald-500/35 via-cyan-400/25 to-blue-500/30",
+    size: "xl:col-span-2",
+    links: { live: "#", github: "#" },
   },
   {
-    title: "Portfolio CMS",
-    desc: "Custom portfolio management dashboard with dynamic content editing.",
-    tags: ["Next.js", "Admin", "CMS"],
+    title: "VAULTA-IQ",
+    desc: "A full-stack financial management platform designed to provide users with real-time insights, budget tracking, spending behavior analysis, data-driven financial decisions, and secure transaction management.",
+    tags: ["React", "Node.js", "Express", "MongoDB"],
+    features: [
+      "Real-time insights",
+      "Budget tracking",
+      "Spending behavior analysis",
+      "Data-driven decisions",
+      "Secure transaction management",
+    ],
+    preview: "FinOps Intelligence Suite",
+    accent: "from-blue-500/35 via-indigo-500/25 to-fuchsia-500/30",
+    size: "xl:col-span-2",
+    links: { live: "#", github: "#" },
   },
   {
-    title: "Developer Command Center",
-    desc: "Interactive futuristic dashboard for system monitoring and logs.",
-    tags: ["UI/UX", "Dashboard", "Analytics"],
+    title: "BLIG.",
+    desc: "An online Next.js blog platform using PostgreSQL database with Flask backend integration and Cloudinary image/video uploads.",
+    tags: ["Next.js", "PostgreSQL", "Flask", "Cloudinary"],
+    features: ["Media uploads", "Integrated backend pipeline"],
+    preview: "Content Publishing Grid",
+    accent: "from-rose-500/30 via-violet-500/20 to-indigo-500/30",
+    links: { live: "#", github: "#" },
+  },
+  {
+    title: "ATS-TRACK PDFs",
+    desc: "Developed ATS Track, a full-stack PDF toolkit application using React, Node.js, pdf-lib, and async job handling.",
+    tags: ["React", "Node.js", "pdf-lib", "Async Jobs"],
+    features: [
+      "PDF merging",
+      "PDF splitting",
+      "PDF manipulation",
+      "Efficient file processing",
+    ],
+    preview: "Document Automation Core",
+    accent: "from-violet-500/35 via-purple-500/25 to-cyan-400/30",
+    size: "xl:col-span-2",
+    links: { live: "#", github: "#" },
+  },
+  {
+    title: "SYNAPSE",
+    desc: "A deep-learning MRI tumor detection system that classifies MRI scans into multiple categories using React frontend, Python FastAPI/Flask backend, and AI prediction pipeline.",
+    tags: ["Deep Learning", "React", "Python API", "Medical AI"],
+    features: ["MRI classification", "AI prediction pipeline"],
+    preview: "NeuroVision Classifier",
+    accent: "from-cyan-500/35 via-blue-500/25 to-violet-500/30",
+    links: { live: "#", github: "#" },
+  },
+  {
+    title: "HEALTHSYNC AI CHATBOT",
+    desc: "A medical chatbot that provides disease predictions based on user symptoms using AI-driven response generation.",
+    tags: ["Conversational AI", "Healthcare", "Prediction Model"],
+    features: ["Symptom-aware responses", "Disease prediction flow"],
+    preview: "Medical Assist Agent",
+    accent: "from-emerald-500/30 via-blue-500/25 to-violet-500/30",
+    links: { live: "#", github: "#" },
+  },
+  {
+    title: "WEATHER APP",
+    desc: "A React Native weather application delivering real-time weather updates, location-based forecasts, dynamic weather UI, and API-driven weather rendering.",
+    tags: ["React Native", "Weather APIs", "Mobile UI"],
+    features: ["Real-time updates", "Location forecasts", "Dynamic weather rendering"],
+    preview: "Forecast Companion",
+    accent: "from-sky-500/35 via-cyan-400/25 to-indigo-500/30",
+    links: { github: "#" },
+  },
+  {
+    title: "TODO APP",
+    desc: "A simple todo application created at the beginning of the React learning journey.",
+    tags: ["React Basics", "State Management"],
+    features: ["Task add/remove flow", "First React fundamentals"],
+    preview: "Task Starter Kit",
+    accent: "from-zinc-500/25 via-violet-500/20 to-cyan-400/25",
+    links: { github: "#" },
+  },
+  {
+    title: "CALCULATOR",
+    desc: "A simple calculator application built using HTML, CSS, and JavaScript.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    features: ["Core arithmetic operations", "UI interaction logic"],
+    preview: "Web Math Utility",
+    accent: "from-amber-500/25 via-orange-500/20 to-violet-500/25",
+    links: { github: "#" },
   },
 ];
 
@@ -163,7 +261,7 @@ const aboutStats = [
     details: [
       "Full-stack systems",
       "SaaS platforms",
-      "Networking tools",
+      
       "AI-integrated apps",
     ],
   },
@@ -175,7 +273,7 @@ const aboutStats = [
       "Frontend frameworks",
       "Backend infrastructure",
       "Data + caching tools",
-      "Cloud deployment stacks",
+     
     ],
   },
   {
@@ -183,10 +281,10 @@ const aboutStats = [
     label: "GitHub Contributions",
     icon: Github,
     details: [
-      "Product iterations",
+      
       "Bug fixing + refactoring",
       "Design system updates",
-      "Performance improvements",
+      ,
     ],
   },
   {
@@ -194,10 +292,10 @@ const aboutStats = [
     label: "Internships",
     icon: Rocket,
     details: [
-      "Team collaboration",
-      "Production workflows",
-      "Feature delivery cycles",
-      "Mentored engineering growth",
+      "Cloud Computing Intern",
+      
+      
+      "Web Development Intern",
     ],
   },
 ];
@@ -403,6 +501,135 @@ function AboutFlipCard({
   );
 }
 
+function ProjectShowcaseCard({ project, index }) {
+  const [isMobile, setIsMobile] = useState(false);
+  const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const smoothX = useSpring(rotateX, { stiffness: 220, damping: 24, mass: 0.52 });
+  const smoothY = useSpring(rotateY, { stiffness: 220, damping: 24, mass: 0.52 });
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleMove = (event) => {
+    if (isMobile) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width;
+    const py = (event.clientY - rect.top) / rect.height;
+    setGlowPos({ x: px * 100, y: py * 100 });
+    rotateX.set((0.5 - py) * 8);
+    rotateY.set((px - 0.5) * 10);
+  };
+
+  const resetTilt = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+    setGlowPos({ x: 50, y: 50 });
+  };
+
+  return (
+    <motion.article
+      variants={revealVariant}
+      style={{ rotateX: smoothX, rotateY: smoothY, transformStyle: "preserve-3d" }}
+      whileHover={{ y: -10, scale: 1.01 }}
+      whileTap={{ scale: 0.985 }}
+      onMouseMove={handleMove}
+      onMouseLeave={resetTilt}
+      className={`group relative overflow-hidden rounded-3xl border border-white/15 bg-black/35 p-6 shadow-[0_16px_45px_rgba(0,0,0,0.35)] [perspective:1500px] ${project.size || ""}`}
+    >
+      <motion.div
+        aria-hidden
+        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "linear", delay: index * 0.3 }}
+        className={`pointer-events-none absolute -inset-px rounded-3xl bg-[length:200%_200%] bg-gradient-to-r ${project.accent || "from-violet-500/25 via-cyan-400/20 to-blue-500/25"} opacity-35`}
+      />
+      <div className="pointer-events-none absolute inset-[1px] rounded-3xl bg-[#080b14]/90" />
+      <div
+        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-400 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(circle at ${glowPos.x}% ${glowPos.y}%, rgba(34,211,238,0.22), transparent 58%)`,
+        }}
+      />
+
+      <div className="relative z-10">
+        <div className="relative mb-5 h-52 overflow-hidden rounded-2xl border border-white/15 bg-black/35">
+          <motion.div
+            className={`absolute inset-0 bg-gradient-to-br ${project.accent || "from-violet-500/35 via-blue-500/20 to-cyan-400/30"}`}
+            animate={{ scale: [1, 1.06, 1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.22),transparent_55%),linear-gradient(160deg,rgba(0,0,0,0)_10%,rgba(0,0,0,0.42)_90%)]"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          />
+          <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,#ffffff14_1px,transparent_1px),linear-gradient(to_bottom,#ffffff14_1px,transparent_1px)] [background-size:22px_22px]" />
+          <div className="absolute inset-x-4 bottom-4">
+            <p className="text-[11px] uppercase tracking-[0.26em] text-cyan-100/85">Project Preview</p>
+            <p className="font-poppins mt-1 text-xl font-semibold text-white">{project.preview}</p>
+          </div>
+        </div>
+
+        <h3 className="font-poppins text-2xl font-semibold text-white">{project.title}</h3>
+        <p className="mt-3 text-sm leading-7 text-zinc-300/90">{project.desc}</p>
+
+        {project.features?.length ? (
+          <div className="mt-4 grid gap-2">
+            {project.features.slice(0, 4).map((feature) => (
+              <div
+                key={feature}
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-zinc-200/90"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                {feature}
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/15 bg-black/35 px-3 py-1 text-xs text-zinc-200"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          {project.links?.live ? (
+            <motion.a
+              href={project.links.live}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-premium px-4 py-2 text-sm"
+            >
+              Live Demo
+            </motion.a>
+          ) : null}
+          {project.links?.github ? (
+            <motion.a
+              href={project.links.github}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-premium border-white/20 from-white/10 to-white/5 px-4 py-2 text-sm"
+            >
+              GitHub
+            </motion.a>
+          ) : null}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
 function TechEcosystemGraphic() {
   return (
     <motion.div
@@ -555,7 +782,7 @@ export default function Home() {
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("fazil@example.com");
+      await navigator.clipboard.writeText("fazilraphi14@gmail.com");
       setCopiedEmail(true);
       window.setTimeout(() => setCopiedEmail(false), 1600);
     } catch {
@@ -574,7 +801,7 @@ export default function Home() {
             href="#home"
             className="text-lg font-semibold tracking-[0.2em] text-white sm:text-xl"
           >
-            FAZIL<span className="text-cyan-300">.DEV</span>
+            FAZIL  <span className="text-cyan-300">PORTFOLIO</span>
           </a>
 
           <div className="hidden items-center gap-2 lg:flex">
@@ -729,7 +956,7 @@ export default function Home() {
                   "System design + scalability mindset",
                   "UI/UX craft with interaction depth",
                   "Performance-first engineering decisions",
-                  "Reliable shipping through iteration",
+                  
                 ]}
                 minHeightClass="min-h-[360px]"
                 frontExtra={
@@ -767,7 +994,7 @@ export default function Home() {
                 backText="I am focused on systems that are fast, observable, and delightful to use."
                 backPoints={[
                   "Backend engineering + APIs",
-                  "AI integrations and automation flows",
+                 
                   "Full-stack architecture decisions",
                   "Motion UI systems and microinteractions",
                   "Performance optimization and real-time state",
@@ -862,62 +1089,13 @@ export default function Home() {
 
       <section id="projects" className="px-6 py-28 md:py-32">
         <div className="mx-auto max-w-7xl">
-          <SectionTitle title="Featured Projects" subtitle="Portfolio" />
+          <SectionTitle title="Project Showcase" subtitle="Portfolio" />
 
-          <Reveal className="card-glass mb-16 overflow-hidden p-10">
-            <div className="grid gap-10 lg:grid-cols-2">
-              <div>
-                <div className="mb-4 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">
-                  Featured SaaS Project
-                </div>
-
-                <h3 className="mb-6 text-4xl font-black text-white md:text-5xl">
-                  AI PDF Toolkit Platform
-                </h3>
-
-                <p className="mb-8 text-lg leading-8 text-zinc-200/90">
-                  A futuristic SaaS platform for PDF processing, analytics, cloud
-                  conversion workflows, queue systems, authentication, and scalable
-                  processing pipelines.
-                </p>
-
-                <div className="mb-8 flex flex-wrap gap-3">
-                  {["Next.js", "MongoDB", "Redis", "BullMQ", "Firebase"].map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/15 bg-black/35 px-4 py-2 text-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-4">
-                  <PremiumButton>Live Demo</PremiumButton>
-                  <PremiumButton className="border-white/20 from-white/10 to-white/5">
-                    GitHub
-                  </PremiumButton>
-                </div>
-              </div>
-
-              <div className="rounded-3xl border border-white/10 bg-black/35 p-8">
-                <div className="grid gap-4 md:grid-cols-2">
-                  {["Queue System", "Authentication", "Analytics", "Cloud Processing"].map((item) => (
-                    <motion.div
-                      key={item}
-                      whileHover={{ y: -6 }}
-                      className="rounded-2xl border border-white/10 bg-white/5 p-6"
-                    >
-                      <h4 className="mb-2 text-lg font-semibold">{item}</h4>
-                      <p className="text-sm leading-7 text-zinc-300/80">
-                        High-performance scalable architecture for enterprise-grade
-                        workflows.
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <Reveal className="mb-10 text-center">
+            <p className="mx-auto max-w-3xl text-lg leading-8 text-zinc-300/90">
+              A premium bento-grid of production projects, ML systems, and full-stack
+              platforms with interactive case-card motion.
+            </p>
           </Reveal>
 
           <motion.div
@@ -925,47 +1103,10 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
           >
             {projects.map((project, i) => (
-              <motion.div
-                key={i}
-                variants={revealVariant}
-                whileHover={{ y: -10, rotateX: 4, rotateY: -4 }}
-                whileTap={{ scale: 0.99 }}
-                style={{ transformStyle: "preserve-3d" }}
-                className="group relative overflow-hidden rounded-3xl border border-white/15 bg-black/35 p-8 shadow-[0_16px_45px_rgba(0,0,0,0.35)]"
-              >
-                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(139,92,246,0.2),transparent_45%,rgba(34,211,238,0.18))] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="pointer-events-none absolute -inset-px rounded-3xl border border-cyan-300/0 transition-colors duration-500 group-hover:border-cyan-300/35" />
-
-                <div className="relative z-10 mb-6 h-44 rounded-2xl bg-gradient-to-br from-violet-500/30 via-blue-500/20 to-cyan-300/20" />
-                <h3 className="relative z-10 mb-4 text-2xl font-bold">{project.title}</h3>
-                <p className="relative z-10 mb-6 leading-8 text-zinc-300/85">{project.desc}</p>
-
-                <div className="relative z-10 mb-6 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="relative z-10 flex gap-3">
-                  <button type="button" className="btn-premium px-4 py-2 text-sm">
-                    Demo
-                  </button>
-                  <button
-                    type="button"
-                    className="btn-premium border-white/20 from-white/10 to-white/5 px-4 py-2 text-sm"
-                  >
-                    GitHub
-                  </button>
-                </div>
-              </motion.div>
+              <ProjectShowcaseCard key={project.title} project={project} index={i} />
             ))}
           </motion.div>
         </div>
@@ -1157,10 +1298,10 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
           <div>
             <h3 className="text-2xl font-black">
-              FAZIL<span className="text-cyan-300">.DEV</span>
+              Always<span className="text-cyan-300"> Learning</span>
             </h3>
             <p className="mt-2 text-zinc-400">
-              Built with Next.js, Tailwind CSS and Framer Motion.
+              Practise is the mother of learning
             </p>
           </div>
 

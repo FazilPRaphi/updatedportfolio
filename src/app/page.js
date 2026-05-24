@@ -749,7 +749,26 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const socialIcons = useMemo(() => [Github, Linkedin, MailIcon], []);
+  const socialLinks = useMemo(
+    () => [
+      {
+        label: "GitHub",
+        href: "https://github.com/FazilPRaphi",
+        Icon: Github,
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/fazil-p-raphi",
+        Icon: Linkedin,
+      },
+      {
+        label: "Email",
+        href: "mailto:fazilraphi14@gmail.com",
+        Icon: MailIcon,
+      },
+    ],
+    [],
+  );
 
   useEffect(() => {
     if (typeof window === "undefined" || window.innerWidth < 1024) {
@@ -900,13 +919,16 @@ export default function Home() {
               viewport={{ once: true, amount: 0.3 }}
               className="mt-10 flex flex-wrap gap-4"
             >
-              {socialIcons.map((Icon, i) => (
+              {socialLinks.map(({ label, href, Icon }) => (
                 <motion.a
                   variants={revealVariant}
                   whileHover={{ y: -4, scale: 1.05 }}
                   whileTap={{ scale: 0.96 }}
-                  key={i}
-                  href="#contact"
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noreferrer" : undefined}
+                  aria-label={label}
                   className="rounded-2xl border border-white/15 bg-white/5 p-4 text-zinc-100 backdrop-blur-xl transition-colors hover:border-cyan-300/40 hover:bg-cyan-300/10"
                 >
                   <Icon className="h-5 w-5" />
@@ -1227,8 +1249,12 @@ export default function Home() {
                 onClick={handleCopyEmail}
                 whileHover={{ y: -4, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="group rounded-2xl border border-white/15 bg-black/30 p-5 text-left transition-colors hover:border-cyan-300/45"
+                className="group relative rounded-2xl border border-white/15 bg-black/30 p-5 text-left transition-colors hover:border-cyan-300/45"
               >
+                <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-r from-violet-400/0 via-cyan-300/35 to-violet-400/0 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute -top-9 left-4 rounded-md border border-white/20 bg-black/85 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-cyan-200 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  Copy Email
+                </span>
                 <div className="mb-2 flex items-center justify-between">
                   <span className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-cyan-200/90">
                     <Mail className="h-4 w-4" />
@@ -1241,7 +1267,7 @@ export default function Home() {
                   )}
                 </div>
                 <span className="bg-gradient-to-r from-violet-200 to-cyan-200 bg-clip-text text-lg font-semibold text-transparent">
-                  fazil@example.com
+                  fazilraphi14@gmail.com
                 </span>
                 <p className="mt-1 text-sm text-zinc-300/75">
                   {copiedEmail ? "Copied to clipboard" : "Click to copy"}
@@ -1265,11 +1291,17 @@ export default function Home() {
               {[
                 {
                   label: "LinkedIn",
-                  href: "https://linkedin.com/in/fazil",
+                  href: "https://www.linkedin.com/in/fazil-p-raphi",
                   Icon: Linkedin,
+                  tooltip: "Open LinkedIn",
                 },
-                { label: "GitHub", href: "https://github.com/fazil", Icon: Github },
-              ].map(({ label, href, Icon }) => (
+                {
+                  label: "GitHub",
+                  href: "https://github.com/FazilPRaphi",
+                  Icon: Github,
+                  tooltip: "Open GitHub",
+                },
+              ].map(({ label, href, Icon, tooltip }) => (
                 <motion.a
                   key={label}
                   href={href}
@@ -1277,8 +1309,12 @@ export default function Home() {
                   rel="noreferrer"
                   whileHover={{ y: -3, scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="group inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/35 px-5 py-3 text-zinc-100 transition-colors hover:border-cyan-300/50 hover:text-cyan-100"
+                  className="group relative inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/35 px-5 py-3 text-zinc-100 transition-colors hover:border-cyan-300/50 hover:text-cyan-100"
                 >
+                  <div className="pointer-events-none absolute -inset-px rounded-full bg-gradient-to-r from-violet-400/0 via-cyan-300/35 to-violet-400/0 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md border border-white/20 bg-black/85 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-cyan-200 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    {tooltip}
+                  </span>
                   <span className="rounded-full border border-white/20 bg-white/5 p-2 transition-colors group-hover:border-cyan-300/45">
                     <Icon className="h-4 w-4" />
                   </span>
@@ -1306,12 +1342,15 @@ export default function Home() {
           </div>
 
           <div className="flex gap-3">
-            {[Github, Linkedin, MailIcon].map((Icon, i) => (
+            {socialLinks.map(({ label, href, Icon }) => (
               <motion.a
-                key={i}
-                href="#contact"
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noreferrer" : undefined}
+                aria-label={label}
                 whileHover={{ y: -3, scale: 1.06 }}
-                className="rounded-xl border border-white/15 bg-white/5 p-3"
+                className="rounded-xl border border-white/15 bg-white/5 p-3 transition-colors hover:border-cyan-300/45 hover:bg-cyan-300/10"
               >
                 <Icon className="h-5 w-5" />
               </motion.a>

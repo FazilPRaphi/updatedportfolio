@@ -1380,8 +1380,7 @@ export default function Home() {
 
           <Reveal className="mb-10 text-center">
             <p className="mx-auto max-w-3xl text-lg leading-8 text-zinc-300/90">
-              A premium bento-grid of production projects, ML systems, and
-              full-stack platforms with interactive case-card motion.
+              
             </p>
           </Reveal>
 

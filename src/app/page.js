@@ -54,7 +54,10 @@ const projects = [
     preview: "Clinical Forecast Engine",
     accent: "from-fuchsia-500/35 via-violet-500/25 to-cyan-400/30",
     size: "xl:col-span-2",
-    links: { live: "#", github: "#" },
+    links: {
+      live: "https://healthcare-ai-system-five.vercel.app/",
+      github: "https://github.com/FazilPRaphi/healthcare-ai-system",
+    },
   },
   {
     title: "SMART LOAN RISK PREDICTOR",
@@ -63,7 +66,10 @@ const projects = [
     features: ["Input-driven predictions", "Loan approval scoring"],
     preview: "Risk Scoring Matrix",
     accent: "from-cyan-500/35 via-blue-500/25 to-indigo-500/30",
-    links: { live: "#", github: "#" },
+    links: {
+      live: "https://loanfrontend-three.vercel.app/",
+      github: "https://github.com/FazilPRaphi/loanfrontend",
+    },
   },
   {
     title: "PORTFOLIO APP",
@@ -72,7 +78,10 @@ const projects = [
     features: ["Dynamic portfolio management", "Backend-powered content flow"],
     preview: "Personal Brand Platform",
     accent: "from-violet-500/35 via-sky-500/20 to-cyan-300/30",
-    links: { live: "#", github: "#" },
+    links: {
+      live: "/",
+      github: "https://github.com/FazilPRaphi/fazil-portfolio",
+    },
   },
   {
     title: "HEALTHSYNC",
@@ -87,7 +96,10 @@ const projects = [
     preview: "Consultation Cloud",
     accent: "from-emerald-500/35 via-cyan-400/25 to-blue-500/30",
     size: "xl:col-span-2",
-    links: { live: "#", github: "#" },
+    links: {
+      live: "https://mini-gamma-kohl.vercel.app/",
+      github: "https://github.com/FazilPRaphi/mini",
+    },
   },
   {
     title: "VAULTA-IQ",
@@ -103,7 +115,10 @@ const projects = [
     preview: "FinOps Intelligence Suite",
     accent: "from-blue-500/35 via-indigo-500/25 to-fuchsia-500/30",
     size: "xl:col-span-2",
-    links: { live: "#", github: "#" },
+    links: {
+      live: "https://vaultaiq.vercel.app/",
+      github: "https://github.com/FazilPRaphi/vaultaiq",
+    },
   },
   {
     title: "BLIG.",
@@ -112,7 +127,10 @@ const projects = [
     features: ["Media uploads", "Integrated backend pipeline"],
     preview: "Content Publishing Grid",
     accent: "from-rose-500/30 via-violet-500/20 to-indigo-500/30",
-    links: { live: "#", github: "#" },
+    links: {
+      live: "https://blogs-frontend-one-xi.vercel.app/",
+      github: "https://github.com/FazilPRaphi/blig_blogs",
+    },
   },
   {
     title: "ATS-TRACK PDFs",
@@ -127,7 +145,10 @@ const projects = [
     preview: "Document Automation Core",
     accent: "from-violet-500/35 via-purple-500/25 to-cyan-400/30",
     size: "xl:col-span-2",
-    links: { live: "#", github: "#" },
+    links: {
+      live: "https://atstrack-pdfs.vercel.app/",
+      github: "https://github.com/FazilPRaphi/atstrack-pdfs",
+    },
   },
   {
     title: "SYNAPSE",
@@ -136,7 +157,10 @@ const projects = [
     features: ["MRI classification", "AI prediction pipeline"],
     preview: "NeuroVision Classifier",
     accent: "from-cyan-500/35 via-blue-500/25 to-violet-500/30",
-    links: { live: "#", github: "#" },
+    links: {
+      live: "https://synapse-frontend-amber.vercel.app/",
+      github: "https://github.com/FazilPRaphi/Synapse",
+    },
   },
   {
     title: "HEALTHSYNC AI CHATBOT",
@@ -145,7 +169,9 @@ const projects = [
     features: ["Symptom-aware responses", "Disease prediction flow"],
     preview: "Medical Assist Agent",
     accent: "from-emerald-500/30 via-blue-500/25 to-violet-500/30",
-    links: { live: "#", github: "#" },
+    links: {
+      github: "https://github.com/FazilPRaphi/chatbot-healthcare-healthsync",
+    },
   },
   {
     title: "WEATHER APP",
@@ -154,7 +180,9 @@ const projects = [
     features: ["Real-time updates", "Location forecasts", "Dynamic weather rendering"],
     preview: "Forecast Companion",
     accent: "from-sky-500/35 via-cyan-400/25 to-indigo-500/30",
-    links: { github: "#" },
+    links: {
+      github: "https://github.com/FazilPRaphi/weatherapp",
+    },
   },
   {
     title: "TODO APP",
@@ -163,43 +191,75 @@ const projects = [
     features: ["Task add/remove flow", "First React fundamentals"],
     preview: "Task Starter Kit",
     accent: "from-zinc-500/25 via-violet-500/20 to-cyan-400/25",
-    links: { github: "#" },
-  },
-  {
-    title: "CALCULATOR",
-    desc: "A simple calculator application built using HTML, CSS, and JavaScript.",
-    tags: ["HTML", "CSS", "JavaScript"],
-    features: ["Core arithmetic operations", "UI interaction logic"],
-    preview: "Web Math Utility",
-    accent: "from-amber-500/25 via-orange-500/20 to-violet-500/25",
-    links: { github: "#" },
+    links: {
+      github: "https://github.com/FazilPRaphi/blog-app",
+    },
   },
 ];
 
 const experience = [
   {
-    year: "2026",
-    role: "Frontend Developer Intern",
-    company: "NovaStack Labs",
-    icon: Rocket,
-  },
-  {
-    year: "2025",
-    role: "Built AI PDF Toolkit",
-    company: "Independent Project",
-    icon: Sparkles,
-  },
-  {
-    year: "2025",
-    role: "Socket Programming Projects",
-    company: "Networking Lab",
+    date: "March 2025",
+    role: "Flutter Training",
+    organization: "COXDO SOLUTIONS",
+    description:
+      "Completed hands-on Flutter development training focused on cross-platform mobile app development, UI engineering, state management, and responsive mobile interfaces.",
+    badges: ["Flutter", "UI Engineering", "State Management", "Responsive Mobile UI"],
     icon: Layers,
   },
   {
-    year: "2024",
-    role: "System Security Practice",
-    company: "Academic Lab",
-    icon: Shield,
+    date: "June 2025",
+    role: "Cloud Computing Internship",
+    organization: "PACELAB",
+    description:
+      "Worked on cloud computing fundamentals and deployment workflows involving cloud infrastructure concepts, deployment pipelines, hosting environments, and scalable cloud systems.",
+    badges: ["Cloud Infrastructure", "Deployment Pipelines", "Hosting", "Scalability"],
+    icon: Globe,
+  },
+  {
+    date: "August 2025",
+    role: "Web Development Training",
+    organization: "Advanced Training Program",
+    description:
+      "Advanced frontend and backend development training focused on React ecosystems, API integrations, responsive UI systems, and full-stack workflows.",
+    badges: ["React Ecosystem", "API Integration", "Responsive UI", "Full-Stack"],
+    icon: Code2,
+  },
+  {
+    date: "December 2025",
+    role: "Python Bootcamp",
+    organization: "Intensive Program",
+    description:
+      "Completed intensive Python programming training covering core Python, automation, backend concepts, problem solving, and data handling.",
+    badges: ["Core Python", "Automation", "Backend Concepts", "Data Handling"],
+    icon: Sparkles,
+  },
+  {
+    date: "January - February 2026",
+    role: "Python Web Development and Machine Learning",
+    organization: "Applied AI Track",
+    description:
+      "Worked on Python web frameworks, AI/ML workflows, model integration, API-driven ML systems, and data prediction systems.",
+    badges: ["Python Web", "AI/ML", "Model Integration", "Prediction APIs"],
+    icon: Cpu,
+  },
+  {
+    date: "May 2026",
+    role: "Web Development Intern",
+    organization: "Internship Program",
+    description:
+      "Worked on modern web application engineering involving frontend UI systems, backend integrations, responsive architecture, and production workflows.",
+    badges: ["Frontend Systems", "Backend Integration", "Responsive Architecture", "Production Flow"],
+    icon: Server,
+  },
+  {
+    date: "June 2026",
+    role: "Flutter App Development Intern",
+    organization: "Mobile Engineering Program",
+    description:
+      "Focused on mobile app architecture, Flutter UI systems, performance optimization, cross-platform development, and interactive mobile experiences.",
+    badges: ["App Architecture", "Flutter UI", "Performance", "Cross-Platform"],
+    icon: Rocket,
   },
 ];
 
@@ -277,7 +337,7 @@ const aboutStats = [
     ],
   },
   {
-    number: "500+",
+    number: "200+",
     label: "GitHub Contributions",
     icon: Github,
     details: [
@@ -347,7 +407,7 @@ function SectionTitle({ title, subtitle }) {
   );
 }
 
-function PremiumButton({ children, className = "", icon: Icon, href }) {
+function PremiumButton({ children, className = "", icon: Icon, href, ...props }) {
   const motionProps = {
     whileHover: { y: -2, scale: 1.01 },
     whileTap: { scale: 0.98 },
@@ -357,7 +417,7 @@ function PremiumButton({ children, className = "", icon: Icon, href }) {
 
   if (href) {
     return (
-      <motion.a href={href} {...motionProps}>
+      <motion.a href={href} {...motionProps} {...props}>
         <span className="relative z-10 flex items-center gap-2">
           {children}
           {Icon ? <Icon className="h-4 w-4" /> : null}
@@ -367,12 +427,84 @@ function PremiumButton({ children, className = "", icon: Icon, href }) {
   }
 
   return (
-    <motion.button type="button" {...motionProps}>
+    <motion.button type="button" {...motionProps} {...props}>
       <span className="relative z-10 flex items-center gap-2">
         {children}
         {Icon ? <Icon className="h-4 w-4" /> : null}
       </span>
     </motion.button>
+  );
+}
+
+function ProjectButton({ children, href, icon: Icon, isLive }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 200, damping: 18, mass: 0.5 });
+  const springY = useSpring(y, { stiffness: 200, damping: 18, mass: 0.5 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const clientX = e.clientX - rect.left - width / 2;
+    const clientY = e.clientY - rect.top - height / 2;
+    x.set(clientX * 0.35);
+    y.set(clientY * 0.35);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const buttonContent = (
+    <motion.div
+      style={{ x: springX, y: springY }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      className={`group/btn relative flex items-center justify-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-xs font-semibold backdrop-blur-xl transition-all duration-300 ${
+        isLive
+          ? "border-cyan-300/40 bg-gradient-to-r from-violet-600/90 via-blue-600/90 to-cyan-500/90 text-white shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:border-cyan-300 hover:shadow-[0_0_25px_rgba(34,211,238,0.5)]"
+          : "border-white/15 bg-black/40 text-zinc-300 hover:border-violet-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+      }`}
+    >
+      {/* Animated gradient light trail */}
+      <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover/btn:translate-x-[100%]" />
+      
+      {/* Neon Hover Glow Overlay */}
+      <span className={`absolute inset-0 -z-10 bg-gradient-to-r ${isLive ? 'from-violet-500 via-cyan-400 to-blue-500' : 'from-violet-500/20 via-zinc-800 to-cyan-400/20'} opacity-0 blur-sm transition-opacity duration-300 group-hover/btn:opacity-100`} />
+
+      <span className="relative z-10 flex items-center gap-1.5">
+        {children}
+        {Icon && (
+          <motion.span
+            className="inline-block"
+            variants={{
+              hover: { x: 2, y: -2, scale: 1.1 },
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <Icon className="h-3.5 w-3.5" />
+          </motion.span>
+        )}
+      </span>
+    </motion.div>
+  );
+
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="inline-block cursor-pointer select-none"
+      initial="initial"
+      whileHover="hover"
+    >
+      {buttonContent}
+    </motion.a>
   );
 }
 
@@ -605,28 +737,107 @@ function ProjectShowcaseCard({ project, index }) {
 
         <div className="mt-6 flex flex-wrap gap-3">
           {project.links?.live ? (
-            <motion.a
-              href={project.links.live}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className="btn-premium px-4 py-2 text-sm"
-            >
+            <ProjectButton href={project.links.live} icon={ExternalLink} isLive={true}>
               Live Demo
-            </motion.a>
+            </ProjectButton>
           ) : null}
           {project.links?.github ? (
-            <motion.a
-              href={project.links.github}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className="btn-premium border-white/20 from-white/10 to-white/5 px-4 py-2 text-sm"
-            >
+            <ProjectButton href={project.links.github} icon={Github} isLive={false}>
               GitHub
-            </motion.a>
+            </ProjectButton>
           ) : null}
         </div>
       </div>
     </motion.article>
+  );
+}
+
+function ExperienceTimeline() {
+  const [active, setActive] = useState(0);
+  const item = experience[active];
+
+  return (
+    <div className="w-full">
+      {/* Timeline nodes row */}
+      <div className="relative flex items-start">
+        {/* Track line */}
+        <div className="pointer-events-none absolute left-10 right-10 top-7 h-[2px] bg-gradient-to-r from-violet-500/30 via-cyan-300/50 to-violet-500/30" />
+        {/* Progress line */}
+        <div
+          className="pointer-events-none absolute left-10 top-7 h-[2px] bg-gradient-to-r from-violet-500 to-cyan-300 transition-all duration-500"
+          style={{
+            width: `calc(((100% - 80px) / ${experience.length - 1}) * ${active} + 40px)`,
+          }}
+        />
+
+        {experience.map((item, i) => {
+          const Icon = item.icon;
+          const isActive = i === active;
+          return (
+            <button
+              key={`${item.date}-${item.role}`}
+              type="button"
+              onClick={() => setActive(i)}
+              className="relative z-10 flex flex-1 flex-col items-center gap-2 group"
+            >
+              <div
+                className={`flex h-14 w-14 items-center justify-center rounded-full border-2 transition-all duration-300 ${
+                  isActive
+                    ? "border-cyan-300 bg-gradient-to-br from-violet-500 to-cyan-400 shadow-[0_0_0_4px_rgba(34,211,238,0.2)] text-white"
+                    : "border-white/15 bg-black/35 text-zinc-400 group-hover:border-violet-400/60 group-hover:text-violet-200"
+                }`}
+              >
+                <Icon className="h-5 w-5" />
+              </div>
+              <span
+                className={`hidden text-center text-[10px] leading-tight sm:block ${
+                  isActive
+                    ? "text-zinc-300"
+                    : "text-zinc-500 group-hover:text-zinc-400"
+                }`}
+              >
+                {item.date}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Detail card */}
+      <motion.div
+        key={active}
+        initial={{ opacity: 0, y: -14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-8 overflow-hidden rounded-3xl border border-cyan-300/20 bg-black/35 p-8 shadow-[0_18px_45px_rgba(0,0,0,0.4)] backdrop-blur-xl"
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(125deg,rgba(139,92,246,0.14),rgba(59,130,246,0.1),rgba(8,12,22,0.86))]" />
+        <div className="relative z-10">
+          <span className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-cyan-200">
+            {item.date}
+          </span>
+          <h3 className="font-poppins mt-4 text-2xl font-semibold text-white">
+            {item.role}
+          </h3>
+          <p className="mt-1 text-sm font-medium text-violet-200/90">
+            {item.organization}
+          </p>
+          <p className="mt-4 text-sm leading-7 text-zinc-200/90">
+            {item.description}
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {item.badges.map((badge) => (
+              <span
+                key={badge}
+                className="rounded-full border border-white/15 bg-black/35 px-3 py-1 text-[11px] text-zinc-200/90"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -771,7 +982,7 @@ export default function Home() {
   );
 
   useEffect(() => {
-    if (typeof window === "undefined" || window.innerWidth < 1024) {
+    if (typeof window === "undefined") {
       return undefined;
     }
 
@@ -779,19 +990,38 @@ export default function Home() {
       .map((item) => document.getElementById(item.toLowerCase()))
       .filter(Boolean);
 
+    // Track each section's current intersection ratio (0 when not visible)
+    const ratioMap = new Map();
+    sections.forEach((sec) => ratioMap.set(sec.id, 0));
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        entries.forEach((entry) => {
+          // Update ratio: 0 when not intersecting so stale values don't win
+          ratioMap.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        });
 
-        if (visible?.target?.id) {
-          setActiveSection(visible.target.id);
+        // Pick the section with the highest visible ratio
+        let bestId = null;
+        let bestRatio = 0;
+
+        ratioMap.forEach((ratio, id) => {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestId = id;
+          }
+        });
+
+        if (bestId) {
+          setActiveSection(bestId);
         }
       },
       {
-        rootMargin: "-35% 0px -45% 0px",
-        threshold: [0.2, 0.4, 0.6],
+        // Clip 15% from top (navbar offset) and 30% from bottom
+        // so mid-page sections fire reliably even inside a tall hero
+        rootMargin: "-15% 0px -30% 0px",
+        // Fine-grained thresholds so the observer fires on small ratio changes
+        threshold: Array.from({ length: 21 }, (_, i) => i * 0.05),
       },
     );
 
@@ -820,7 +1050,7 @@ export default function Home() {
             href="#home"
             className="text-lg font-semibold tracking-[0.2em] text-white sm:text-xl"
           >
-            FAZIL  <span className="text-cyan-300">PORTFOLIO</span>
+            FAZIL <span className="text-cyan-300">PORTFOLIO</span>
           </a>
 
           <div className="hidden items-center gap-2 lg:flex">
@@ -838,7 +1068,11 @@ export default function Home() {
                     <motion.span
                       layoutId="nav-pill"
                       className="absolute inset-0 rounded-full border border-cyan-300/50 bg-gradient-to-r from-violet-500/25 to-cyan-400/20 shadow-[0_0_18px_rgba(34,211,238,0.25)]"
-                      transition={{ type: "spring", stiffness: 320, damping: 34 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 320,
+                        damping: 34,
+                      }}
                     />
                   ) : null}
                   <span className="relative z-10">{item}</span>
@@ -896,8 +1130,9 @@ export default function Home() {
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300/90 md:text-xl md:leading-9">
-              I design immersive full-stack applications, scalable backend systems,
-              networking tools, and premium interfaces with modern web technologies.
+              I design immersive full-stack applications, scalable backend
+              systems, networking tools, and premium interfaces with modern web
+              technologies.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
@@ -905,6 +1140,10 @@ export default function Home() {
                 View Projects
               </PremiumButton>
               <PremiumButton
+                href="/FazilPRaphiResume.pdf"
+                download="FazilPRaphiResume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border-white/20 from-white/10 to-white/5"
                 icon={Download}
               >
@@ -952,7 +1191,12 @@ export default function Home() {
         <motion.div
           aria-hidden
           animate={{ opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.7,
+          }}
           className="pointer-events-none absolute -bottom-10 right-8 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl"
         />
 
@@ -978,19 +1222,34 @@ export default function Home() {
                   "System design + scalability mindset",
                   "UI/UX craft with interaction depth",
                   "Performance-first engineering decisions",
-                  
                 ]}
                 minHeightClass="min-h-[360px]"
                 frontExtra={
                   <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/25 p-4">
                     <motion.div
                       className="absolute inset-0 bg-[linear-gradient(120deg,rgba(139,92,246,0.2),transparent_50%,rgba(34,211,238,0.2))]"
-                      animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                      transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+                      animate={{
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                      }}
+                      transition={{
+                        duration: 9,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     />
                     <div className="relative z-10 flex flex-wrap gap-2 text-xs text-zinc-100/90">
-                      {["Next.js", "Node.js", "MongoDB", "Framer Motion", "Redis", "Docker"].map((tag) => (
-                        <span key={tag} className="rounded-full border border-white/15 bg-black/35 px-3 py-1">
+                      {[
+                        "Next.js",
+                        "Node.js",
+                        "MongoDB",
+                        "Framer Motion",
+                        "Redis",
+                        "Docker",
+                      ].map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-white/15 bg-black/35 px-3 py-1"
+                        >
                           {tag}
                         </span>
                       ))}
@@ -1016,7 +1275,7 @@ export default function Home() {
                 backText="I am focused on systems that are fast, observable, and delightful to use."
                 backPoints={[
                   "Backend engineering + APIs",
-                 
+
                   "Full-stack architecture decisions",
                   "Motion UI systems and microinteractions",
                   "Performance optimization and real-time state",
@@ -1028,7 +1287,11 @@ export default function Home() {
                       <motion.div
                         key={i}
                         animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 3 + i, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{
+                          duration: 3 + i,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                         className="flex items-center justify-center rounded-xl border border-cyan-300/25 bg-cyan-300/10 py-2"
                       >
                         <Icon className="h-4 w-4 text-cyan-200" />
@@ -1092,7 +1355,9 @@ export default function Home() {
                 key={category}
                 className="card-glass p-8"
               >
-                <h3 className="mb-6 text-2xl font-bold text-cyan-300">{category}</h3>
+                <h3 className="mb-6 text-2xl font-bold text-cyan-300">
+                  {category}
+                </h3>
                 <div className="flex flex-wrap gap-3">
                   {items.map((skill) => (
                     <span
@@ -1115,8 +1380,8 @@ export default function Home() {
 
           <Reveal className="mb-10 text-center">
             <p className="mx-auto max-w-3xl text-lg leading-8 text-zinc-300/90">
-              A premium bento-grid of production projects, ML systems, and full-stack
-              platforms with interactive case-card motion.
+              A premium bento-grid of production projects, ML systems, and
+              full-stack platforms with interactive case-card motion.
             </p>
           </Reveal>
 
@@ -1128,55 +1393,23 @@ export default function Home() {
             className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
           >
             {projects.map((project, i) => (
-              <ProjectShowcaseCard key={project.title} project={project} index={i} />
+              <ProjectShowcaseCard
+                key={project.title}
+                project={project}
+                index={i}
+              />
             ))}
           </motion.div>
         </div>
       </section>
 
-      <section id="experience" className="px-6 py-28 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle title="Experience" subtitle="Journey" />
+      <section id="experience" className="relative px-6 py-28 md:py-32">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(139,92,246,0.24),transparent_42%),radial-gradient(circle_at_85%_65%,rgba(34,211,238,0.2),transparent_48%)]" />
 
-          <Reveal>
-            <div className="relative overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="min-w-[980px]">
-                <div className="relative h-1 rounded-full bg-gradient-to-r from-violet-500/30 via-cyan-300/50 to-blue-500/30" />
+        <div className="relative mx-auto max-w-7xl">
+          <SectionTitle title="Experience Timeline" subtitle="Journey" />
 
-                <motion.div
-                  variants={staggerVariant}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  className="mt-8 grid grid-cols-4 gap-6"
-                >
-                  {experience.map((item, i) => {
-                    const Icon = item.icon;
-                    return (
-                      <motion.article
-                        key={`${item.year}-${item.role}`}
-                        variants={revealVariant}
-                        whileHover={{ y: -8 }}
-                        className="card-glass relative snap-start p-6"
-                      >
-                        <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-300/30 bg-cyan-300/10 text-cyan-200">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <span className="mb-3 inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-cyan-200">
-                          {item.year}
-                        </span>
-                        <h3 className="mb-2 text-xl font-semibold">{item.role}</h3>
-                        <p className="text-sm text-zinc-300/80">{item.company}</p>
-                        {i < experience.length - 1 ? (
-                          <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-px bg-white/10 xl:block" />
-                        ) : null}
-                      </motion.article>
-                    );
-                  })}
-                </motion.div>
-              </div>
-            </div>
-          </Reveal>
+          <ExperienceTimeline />
         </div>
       </section>
 
@@ -1219,7 +1452,15 @@ export default function Home() {
             Explore a complete overview of projects, technical expertise,
             engineering experience, and professional achievements.
           </p>
-          <PremiumButton icon={Download}>Download Resume</PremiumButton>
+          <PremiumButton
+            href="/FazilPRaphiResume.pdf"
+            download="FazilPRaphiResume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            icon={Download}
+          >
+            Download Resume
+          </PremiumButton>
         </Reveal>
       </section>
 
@@ -1239,7 +1480,8 @@ export default function Home() {
                 Let us Connect
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-zinc-200/90 md:text-lg">
-                Open to collaborations, internships, and building ambitious digital products.
+                Open to collaborations, internships, and building ambitious
+                digital products.
               </p>
             </div>
 
@@ -1282,8 +1524,12 @@ export default function Home() {
                   <MapPin className="h-4 w-4" />
                   Location
                 </p>
-                <p className="text-lg font-semibold text-zinc-100">Kochi, India</p>
-                <p className="mt-1 text-sm text-zinc-300/75">Available for remote collaboration</p>
+                <p className="text-lg font-semibold text-zinc-100">
+                  Kochi, India
+                </p>
+                <p className="mt-1 text-sm text-zinc-300/75">
+                  Available for remote collaboration
+                </p>
               </motion.div>
             </div>
 

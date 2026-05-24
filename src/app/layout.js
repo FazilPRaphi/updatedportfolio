@@ -17,6 +17,10 @@ const poppins = Poppins({
 export const metadata = {
   title: "Fazil Portfolio",
   description: "A portfolio website showcasing the projects and skills of Fazil, a passionate developer. Explore Fazil's work, experience, and contact information to learn more about his expertise in web development and software engineering.",
+  icons: {
+    icon: "/FZ.png",
+    apple: "/FZ.png",
+  },
 };
 
 export default function RootLayout({ children }) {

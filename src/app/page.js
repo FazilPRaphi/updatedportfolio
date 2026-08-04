@@ -618,7 +618,7 @@ function AboutFlipCard({
     <motion.button
       type="button"
       aria-pressed={isFlipped}
-      className={`group relative w-full text-left [perspective:1600px] ${className}`}
+      className={`group relative w-full text-left [perspective:1600px] overflow-hidden rounded-[1.6rem] ${className}`}
       style={{ rotateX: smoothX, rotateY: smoothY }}
       whileHover={{ scale: 1.01 }}
       whileTap={{ scale: 0.985 }}
@@ -645,7 +645,7 @@ function AboutFlipCard({
           }}
         />
 
-        <div className="absolute inset-0 rounded-[1.6rem] border border-cyan-300/20 bg-[linear-gradient(130deg,rgba(139,92,246,0.16),rgba(59,130,246,0.11),rgba(11,16,30,0.68))] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl [backface-visibility:hidden]">
+        <div className="absolute inset-0 overflow-hidden rounded-[1.6rem] border border-cyan-300/20 bg-[linear-gradient(130deg,rgba(139,92,246,0.16),rgba(59,130,246,0.11),rgba(11,16,30,0.68))] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl [backface-visibility:hidden]">
           <div className="relative z-10 flex h-full flex-col">
             <div className="mb-4 flex items-center justify-between">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-cyan-200/85">
@@ -1456,7 +1456,7 @@ export default function Home() {
                   "UI/UX craft with interaction depth",
                   "Performance-first engineering decisions",
                 ]}
-                minHeightClass="min-h-[360px]"
+                minHeightClass="min-h-[460px] sm:min-h-[400px] lg:min-h-[360px]"
                 frontExtra={
                   <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/25 p-4">
                     <motion.div

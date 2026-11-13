@@ -58,9 +58,13 @@ import {
   SiGithubactions,
   SiPostman,
   SiApachehive,
+  SiFlutter,
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import * as THREE from "three";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
 
 const navItems = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
 
@@ -104,39 +108,160 @@ const skillsWithIcons = {
 
 const projects = [
   {
-    title: "SMART LOAN RISK PREDICTOR",
-    desc: "An ML project that takes form input values to predict whether a loan request will be approved or not.",
-    tags: ["ML Classification", "Risk Analysis", "Form Intelligence"],
-    features: ["Input-driven predictions", "Loan approval scoring"],
-    preview: "Risk Scoring Matrix",
-    accent: "from-cyan-500/35 via-blue-500/25 to-indigo-500/30",
-    links: {
-      live: "https://loanfrontend-three.vercel.app/",
-      github: "https://github.com/FazilPRaphi/loanfrontend",
-    },
+    id: "wisteria",
+    name: "Wisteria",
+    category: "Healthcare Technology / AI / Desktop Application",
+    description:
+      "Wisteria is an offline-first clinical workstation built with Flutter, designed to streamline patient record management, medical examinations and AI-assisted clinical workflows. It uses local storage and on-device inference to support medical image analysis and local conversational assistance without depending on cloud-based inference.",
+    note: "Academic prototype under active development, not a certified medical device.",
+    logo: "/projectlogos/wisteria.png",
+    features: [
+      "Patient registration, searching and record management",
+      "Medical history and examination tracking",
+      "Doctor profile and clinic information management",
+      "Offline-first local database using Drift and SQLite",
+      "Medical image management and local file storage",
+      "ONNX Runtime-based medical image inference",
+      "WisChat integration using a local Ollama service",
+      "Light and dark theme support",
+      "Desktop-first clinical workflow interface",
+    ],
+    technologies: [
+      "Flutter",
+      "Dart",
+      "Drift",
+      "SQLite",
+      "ONNX Runtime",
+      "Ollama",
+      "Flutter Markdown",
+    ],
+    githubUrl: "https://github.com/FazilPRaphi/Wisteria",
+    liveUrl: null,
+    apkUrl: null,
   },
   {
-    title: "HEALTHSYNC",
-    desc: "A full-stack doctor-patient consultation platform built using React (Vite), designed to streamline appointment booking, patient management, real-time communication, and responsive medical dashboard UI.",
-    tags: ["React (Vite)", "Full Stack", "Realtime Communication"],
+    id: "elcopt",
+    name: "Elcopt",
+    category: "Web Application / Cloud Storage",
+    description:
+      "Elcopt is a personal photo storage and management web application built using Flask and Jinja2. It provides authenticated users with a dedicated interface to upload, access and manage their personal image collections using cloud-backed services.",
+    logo: "/projectlogos/elcopt.png",
+    features: [
+      "User authentication and login",
+      "Personal photo management",
+      "Image upload and deletion",
+      "Dashboard for accessing stored images",
+      "Server-rendered frontend using Jinja2",
+      "Flask-based application architecture",
+      "Firebase integration for authentication and user data",
+      "Cloudinary integration for image storage and hosting",
+    ],
+    technologies: [
+      "Python",
+      "Flask",
+      "Jinja2",
+      "Firebase Authentication",
+      "Cloud Firestore",
+      "Cloudinary",
+      "HTML",
+      "CSS",
+    ],
+    githubUrl: "https://github.com/FazilPRaphi/Elcopt",
+    liveUrl: "https://elcopt-3.onrender.com/login",
+    apkUrl: null,
+  },
+  {
+    id: "rpg-app",
+    name: "RPG App",
+    category: "Mobile Application / Gaming",
+    description:
+      "RPG App is a cross-platform role-playing game character manager built with Flutter and Firebase. It allows users to create, customize and manage RPG characters, vocations, character statistics and custom skills through a responsive mobile interface.",
+    note: "Open-source project · MIT License",
+    logo: "/projectlogos/rpg.png",
+    features: [
+      "RPG character creation and customization",
+      "Character statistics management",
+      "Vocation management",
+      "Custom skill management",
+      "Firebase Cloud Firestore integration",
+      "Real-time data synchronization",
+      "Responsive mobile UI",
+      "Provider-based state management",
+      "Android APK releases through GitHub",
+    ],
+    technologies: [
+      "Flutter",
+      "Dart",
+      "Firebase",
+      "Cloud Firestore",
+      "Provider",
+      "Google Fonts",
+    ],
+    githubUrl: "https://github.com/FazilPRaphi/rpg",
+    liveUrl: null,
+    apkUrl: "https://github.com/FazilPRaphi/rpg/releases/latest",
+  },
+  {
+    id: "causeconnect",
+    name: "CauseConnect",
+    category: "Civic Technology / NGO / Social Impact",
+    description:
+      "CauseConnect is a community-focused NGO platform designed to connect citizens with authorities by providing a way to report public and social infrastructure problems. Users can raise concerns about issues such as broken streetlights, damaged roads and other problems affecting their communities, while administrators can manage and monitor submitted reports.",
+    logo: "/projectlogos/causeconnect.png",
+    features: [
+      "User registration and authentication",
+      "Separate user and administrator access",
+      "Community issue reporting",
+      "Reporting of public infrastructure problems",
+      "Firebase Authentication",
+      "Firebase-backed data management",
+      "Administrative issue monitoring",
+      "Centralized issue management interface",
+    ],
+    technologies: [
+      "Firebase",
+      "Firebase Authentication",
+      "Cloud Firestore",
+      "JavaScript",
+      "HTML",
+      "CSS",
+    ],
+    githubUrl: "https://github.com/FazilPRaphi/CauseConnect",
+    liveUrl: "https://causeconnectorg.netlify.app/",
+    apkUrl: null,
+  },
+  {
+    id: "healthsync",
+    name: "HEALTHSYNC",
+    category: "Doctor-Patient Consultation Platform",
+    description:
+      "A full-stack doctor-patient consultation platform built using React (Vite), designed to streamline appointment booking, patient management, real-time communication, and responsive medical dashboard UI.",
+    logo: "/projectlogos/Healthsync.svg",
     features: [
       "Appointment booking",
       "Patient management",
       "Real-time communication",
       "Responsive medical dashboard UI",
     ],
-    preview: "Consultation Cloud",
-    accent: "from-emerald-500/35 via-cyan-400/25 to-blue-500/30",
-    featured: true,
-    links: {
-      live: "https://mini-gamma-kohl.vercel.app/",
-      github: "https://github.com/FazilPRaphi/mini",
-    },
+    technologies: [
+      "React (Vite)",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Full Stack",
+      "Realtime Communication",
+    ],
+    githubUrl: "https://github.com/FazilPRaphi/mini",
+    liveUrl: "https://mini-gamma-kohl.vercel.app/",
+    apkUrl: null,
   },
   {
-    title: "VAULTA-IQ",
-    desc: "A full-stack financial management platform designed to provide users with real-time insights, budget tracking, spending behavior analysis, data-driven financial decisions, and secure transaction management.",
-    tags: ["React", "Node.js", "Express", "MongoDB"],
+    id: "vaulta-iq",
+    name: "VAULTA-IQ",
+    category: "FinOps Intelligence & Financial Management",
+    description:
+      "A full-stack financial management platform designed to provide users with real-time insights, budget tracking, spending behavior analysis, data-driven financial decisions, and secure transaction management.",
+    logo: "/projectlogos/Vaulta IQ Crimson Orbit Logo.png",
     features: [
       "Real-time insights",
       "Budget tracking",
@@ -144,44 +269,76 @@ const projects = [
       "Data-driven decisions",
       "Secure transaction management",
     ],
-    preview: "FinOps Intelligence Suite",
-    accent: "from-blue-500/35 via-indigo-500/25 to-fuchsia-500/30",
-    featured: true,
-    links: {
-      live: "https://vaultaiq.vercel.app/",
-      github: "https://github.com/FazilPRaphi/vaultaiq",
-    },
+    technologies: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "FinOps Suite",
+      "Financial Intelligence",
+    ],
+    githubUrl: "https://github.com/FazilPRaphi/vaultaiq",
+    liveUrl: "https://vaultaiq.vercel.app/",
+    apkUrl: null,
   },
   {
-    title: "ATS-TRACK PDFs",
-    desc: "Developed ATS Track, a full-stack PDF toolkit application using React, Node.js, pdf-lib, and async job handling.",
-    tags: ["React", "Node.js", "pdf-lib", "Async Jobs"],
+    id: "atstrack-pdfs",
+    name: "ATS-TRACK PDFs",
+    category: "Document Automation Core",
+    description:
+      "Developed ATS Track, a full-stack PDF toolkit application using React, Node.js, pdf-lib, and async job handling.",
+    logo: "/projectlogos/atstrack.png",
     features: [
       "PDF merging",
       "PDF splitting",
       "PDF manipulation",
       "Efficient file processing",
     ],
-    preview: "Document Automation Core",
-    accent: "from-violet-500/35 via-purple-500/25 to-cyan-400/30",
-    featured: true,
-    links: {
-      live: "https://atstrack-pdfs.vercel.app/",
-      github: "https://github.com/FazilPRaphi/atstrack-pdfs",
-    },
+    technologies: ["React", "Node.js", "pdf-lib", "Async Jobs"],
+    githubUrl: "https://github.com/FazilPRaphi/atstrack-pdfs",
+    liveUrl: "https://atstrack-pdfs.vercel.app/",
+    apkUrl: null,
   },
   {
-    title: "SYNAPSE",
-    desc: "A deep-learning MRI tumor detection system that classifies MRI scans into multiple categories using React frontend, Python FastAPI/Flask backend, and AI prediction pipeline.",
-    tags: ["Deep Learning", "React", "Python API", "Medical AI"],
-    features: ["MRI classification", "AI prediction pipeline"],
-    preview: "NeuroVision Classifier",
-    accent: "from-cyan-500/35 via-blue-500/25 to-violet-500/30",
-    featured: true,
-    links: {
-      live: "https://synapse-frontend-amber.vercel.app/",
-      github: "https://github.com/FazilPRaphi/Synapse",
-    },
+    id: "synapse",
+    name: "SYNAPSE",
+    category: "NeuroVision AI Medical Classifier",
+    description:
+      "A deep-learning MRI tumor detection system that classifies MRI scans into multiple categories using React frontend, Python FastAPI/Flask backend, and AI prediction pipeline.",
+    logo: "/projectlogos/synapse.svg",
+    features: [
+      "MRI classification",
+      "AI prediction pipeline",
+      "Deep Learning",
+      "Medical AI",
+    ],
+    technologies: [
+      "Deep Learning",
+      "React",
+      "Python API",
+      "Medical AI",
+      "FastAPI",
+    ],
+    githubUrl: "https://github.com/FazilPRaphi/Synapse",
+    liveUrl: "https://synapse-frontend-amber.vercel.app/",
+    apkUrl: null,
+  },
+  {
+    id: "smart-loan",
+    name: "SMART LOAN RISK PREDICTOR",
+    category: "ML Classification & Risk Intelligence",
+    description:
+      "An ML project that takes form input values to predict whether a loan request will be approved or not.",
+    logo: null,
+    features: [
+      "Input-driven predictions",
+      "Loan approval scoring",
+      "Form Intelligence",
+    ],
+    technologies: ["ML Classification", "Risk Analysis", "Python", "React"],
+    githubUrl: "https://github.com/FazilPRaphi/loanfrontend",
+    liveUrl: "https://loanfrontend-three.vercel.app/",
+    apkUrl: null,
   },
 ];
 
@@ -259,103 +416,6 @@ const experience = [
   },
 ];
 
-const featureCards = [
-  {
-    title: "Scalable Frontends",
-    text: "Responsive interfaces with cinematic motion and robust design systems.",
-    icon: Code2,
-  },
-  {
-    title: "Cloud Data Layer",
-    text: "High-throughput API and database architecture for modern products.",
-    icon: Database,
-  },
-  {
-    title: "Realtime Backends",
-    text: "Low-latency services, queues, and event-driven systems at scale.",
-    icon: Server,
-  },
-  {
-    title: "Global Reach",
-    text: "Production-ready deployments with observability and resilience.",
-    icon: Globe,
-  },
-];
-
-const ecosystemNodes = [
-  { label: "React", Icon: FaReact, x: "8%", y: "12%", delay: 0 },
-  { label: "MongoDB", Icon: SiMongodb, x: "66%", y: "10%", delay: 0.2 },
-  { label: "Express", Icon: SiExpress, x: "80%", y: "42%", delay: 0.4 },
-  { label: "Node.js", Icon: FaNodeJs, x: "12%", y: "44%", delay: 0.5 },
-  { label: "Python", Icon: FaPython, x: "18%", y: "74%", delay: 0.7 },
-  { label: "Tailwind", Icon: SiTailwindcss, x: "62%", y: "76%", delay: 0.9 },
-  { label: "Firebase", Icon: SiFirebase, x: "44%", y: "6%", delay: 1.1 },
-  { label: "Docker", Icon: FaDocker, x: "46%", y: "84%", delay: 1.3 },
-  { label: "GitHub", Icon: Github, x: "76%", y: "62%", delay: 1.5 },
-];
-
-const snippetCards = [
-  {
-    title: "queue.ts",
-    content: "worker.process(async job => optimize(job.data));",
-  },
-  {
-    title: "api.json",
-    content: '{ "latency": "18ms", "uptime": "99.99%" }',
-  },
-  {
-    title: "deploy.yml",
-    content: "pipeline: [build, test, ship]",
-  },
-];
-
-const aboutStats = [
-  {
-    number: "15+",
-    label: "Projects Built",
-    icon: Code2,
-    details: [
-      "Full-stack systems",
-      "SaaS platforms",
-      
-      "AI-integrated apps",
-    ],
-  },
-  {
-    number: "20+",
-    label: "Technologies",
-    icon: Layers,
-    details: [
-      "Frontend frameworks",
-      "Backend infrastructure",
-      "Data + caching tools",
-     
-    ],
-  },
-  {
-    number: "200+",
-    label: "GitHub Contributions",
-    icon: Github,
-    details: [
-      
-      "Bug fixing + refactoring",
-      "Design system updates",
-      ,
-    ],
-  },
-  {
-    number: "2",
-    label: "Internships",
-    icon: Rocket,
-    details: [
-      "Cloud Computing Intern",
-      
-      
-      "Web Development Intern",
-    ],
-  },
-];
-
 const revealVariant = {
   hidden: { opacity: 0, y: 28, filter: "blur(12px)" },
   visible: {
@@ -393,7 +453,7 @@ function Reveal({ children, className = "", once = true, amount = 0.2 }) {
 function SectionTitle({ title, subtitle }) {
   return (
     <Reveal className="mb-14 text-center">
-      <p className="mb-3 text-xs uppercase tracking-[0.35em] text-cyan-300/80">
+      <p className="mb-3 text-xs uppercase tracking-[0.35em] text-zinc-400">
         {subtitle}
       </p>
       <h2 className="text-balance text-4xl font-bold text-white md:text-5xl">
@@ -405,429 +465,200 @@ function SectionTitle({ title, subtitle }) {
 
 function PremiumButton({ children, className = "", icon: Icon, href, ...props }) {
   const motionProps = {
-    whileHover: { y: -2, scale: 1.01 },
+    whileHover: { y: -2, scale: 1.02 },
     whileTap: { scale: 0.98 },
     transition: { duration: 0.2, ease: "easeOut" },
-    className: `btn-premium ${className}`,
+    className: `btn-premium group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-[#4d4d4d] bg-gradient-to-r from-[#1e1e1e] via-[#3c3c3c] to-[#1e1e1e] px-7 py-3.5 font-semibold text-white shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-white ${className}`,
   };
+
+  const innerContent = (
+    <>
+      <span className="relative z-10 flex items-center gap-2">
+        {children}
+        {Icon ? <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" /> : null}
+      </span>
+      <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[150%]" />
+    </>
+  );
 
   if (href) {
     return (
       <motion.a href={href} {...motionProps} {...props}>
-        <span className="relative z-10 flex items-center gap-2">
-          {children}
-          {Icon ? <Icon className="h-4 w-4" /> : null}
-        </span>
+        {innerContent}
       </motion.a>
     );
   }
 
   return (
     <motion.button type="button" {...motionProps} {...props}>
-      <span className="relative z-10 flex items-center gap-2">
-        {children}
-        {Icon ? <Icon className="h-4 w-4" /> : null}
-      </span>
+      {innerContent}
     </motion.button>
   );
 }
 
-function ProjectButton({ children, href, icon: Icon, isLive }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 200, damping: 18, mass: 0.5 });
-  const springY = useSpring(y, { stiffness: 200, damping: 18, mass: 0.5 });
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const clientX = e.clientX - rect.left - width / 2;
-    const clientY = e.clientY - rect.top - height / 2;
-    x.set(clientX * 0.35);
-    y.set(clientY * 0.35);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  const buttonContent = (
-    <motion.div
-      style={{ x: springX, y: springY }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.96 }}
-      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      className={`group/btn relative flex items-center justify-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-xs font-semibold backdrop-blur-xl transition-all duration-300 ${
-        isLive
-          ? "border-cyan-300/40 bg-gradient-to-r from-violet-600/90 via-blue-600/90 to-cyan-500/90 text-white shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:border-cyan-300 hover:shadow-[0_0_25px_rgba(34,211,238,0.5)]"
-          : "border-white/15 bg-black/40 text-zinc-300 hover:border-violet-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
-      }`}
-    >
-      {/* Animated gradient light trail */}
-      <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover/btn:translate-x-[100%]" />
-      
-      {/* Neon Hover Glow Overlay */}
-      <span className={`absolute inset-0 -z-10 bg-gradient-to-r ${isLive ? 'from-violet-500 via-cyan-400 to-blue-500' : 'from-violet-500/20 via-zinc-800 to-cyan-400/20'} opacity-0 blur-sm transition-opacity duration-300 group-hover/btn:opacity-100`} />
-
-      <span className="relative z-10 flex items-center gap-1.5">
-        {children}
-        {Icon && (
-          <motion.span
-            className="inline-block"
-            variants={{
-              hover: { x: 2, y: -2, scale: 1.1 },
-            }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <Icon className="h-3.5 w-3.5" />
-          </motion.span>
-        )}
-      </span>
-    </motion.div>
-  );
+function ProjectCard({ project, index }) {
+  const isEven = index % 2 === 0;
 
   return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="inline-block cursor-pointer select-none"
-      initial="initial"
-      whileHover="hover"
-    >
-      {buttonContent}
-    </motion.a>
-  );
-}
-
-function AboutFlipCard({
-  icon: Icon,
-  title,
-  preview,
-  badge,
-  backTitle,
-  backText,
-  backPoints = [],
-  className = "",
-  minHeightClass = "min-h-[280px]",
-  frontExtra,
-  backExtra,
-}) {
-  const [flipped, setFlipped] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-  const smoothX = useSpring(rotateX, { stiffness: 220, damping: 24, mass: 0.5 });
-  const smoothY = useSpring(rotateY, { stiffness: 220, damping: 24, mass: 0.5 });
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const handleMove = (event) => {
-    if (isMobile) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width;
-    const py = (event.clientY - rect.top) / rect.height;
-    setGlowPos({ x: px * 100, y: py * 100 });
-    rotateX.set((0.5 - py) * 10);
-    rotateY.set((px - 0.5) * 12);
-  };
-
-  const resetTilt = () => {
-    rotateX.set(0);
-    rotateY.set(0);
-    setGlowPos({ x: 50, y: 50 });
-  };
-
-  const isFlipped = isMobile ? flipped : hovered;
-
-  return (
-    <motion.button
-      type="button"
-      aria-pressed={isFlipped}
-      className={`group relative w-full text-left [perspective:1600px] overflow-hidden rounded-[1.6rem] ${className}`}
-      style={{ rotateX: smoothX, rotateY: smoothY }}
-      whileHover={{ scale: 1.01 }}
-      whileTap={{ scale: 0.985 }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => {
-        setHovered(false);
-        resetTilt();
-      }}
-      onMouseMove={handleMove}
-      onMouseLeave={resetTilt}
-      onClick={() => {
-        if (isMobile) setFlipped((prev) => !prev);
-      }}
-    >
-      <motion.div
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
-        className={`relative h-full ${minHeightClass} [transform-style:preserve-3d]`}
-      >
-        <div
-          className="pointer-events-none absolute inset-0 rounded-[1.6rem] opacity-0 transition-opacity duration-400 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(circle at ${glowPos.x}% ${glowPos.y}%, rgba(34,211,238,0.22), transparent 55%)`,
-          }}
-        />
-
-        <div className="absolute inset-0 overflow-hidden rounded-[1.6rem] border border-cyan-300/20 bg-[linear-gradient(130deg,rgba(139,92,246,0.16),rgba(59,130,246,0.11),rgba(11,16,30,0.68))] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl [backface-visibility:hidden]">
-          <div className="relative z-10 flex h-full flex-col">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-cyan-200/85">
-                <Icon className="h-3.5 w-3.5" />
-                <span>{badge}</span>
-              </div>
-              <span className="text-[10px] uppercase tracking-[0.25em] text-zinc-400">
-                {isMobile ? "Tap to flip" : "Hover to flip"}
-              </span>
-            </div>
-            <h3 className="font-poppins text-2xl font-semibold leading-tight text-white md:text-3xl">
-              {title}
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-zinc-200/90">{preview}</p>
-            {frontExtra ? <div className="mt-auto pt-6">{frontExtra}</div> : null}
-          </div>
-        </div>
-
-        <div className="absolute inset-0 rounded-[1.6rem] border border-violet-300/30 bg-[linear-gradient(150deg,rgba(15,23,42,0.9),rgba(30,41,59,0.86),rgba(10,15,24,0.95))] p-5 shadow-[0_22px_55px_rgba(0,0,0,0.48)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <div className="flex h-full flex-col overflow-hidden">
-            <p className="shrink-0 text-xs uppercase tracking-[0.28em] text-violet-200/85">
-              Backside
-            </p>
-            <h4 className="mt-2 shrink-0 font-poppins text-lg font-semibold text-white md:text-xl">
-              {backTitle}
-            </h4>
-            <p className="mt-2 shrink-0 text-xs leading-6 text-zinc-200/90">{backText}</p>
-            <div className="mt-3 flex-1 overflow-y-auto grid gap-1.5 content-start scrollbar-none">
-              {backPoints.filter(Boolean).map((point) => (
-                <div
-                  key={point}
-                  className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-zinc-200/90"
-                >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300" />
-                  {point}
-                </div>
-              ))}
-            </div>
-            {backExtra ? <div className="mt-2 shrink-0 pt-2">{backExtra}</div> : null}
-          </div>
-        </div>
-      </motion.div>
-    </motion.button>
-  );
-}
-
-function ProjectShowcaseCard({ project, index }) {
-  const [isMobile, setIsMobile] = useState(false);
-  const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-  const smoothX = useSpring(rotateX, { stiffness: 220, damping: 24, mass: 0.52 });
-  const smoothY = useSpring(rotateY, { stiffness: 220, damping: 24, mass: 0.52 });
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const handleMove = (event) => {
-    if (isMobile) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width;
-    const py = (event.clientY - rect.top) / rect.height;
-    setGlowPos({ x: px * 100, y: py * 100 });
-    rotateX.set((0.5 - py) * 8);
-    rotateY.set((px - 0.5) * 10);
-  };
-
-  const resetTilt = () => {
-    rotateX.set(0);
-    rotateY.set(0);
-    setGlowPos({ x: 50, y: 50 });
-  };
-
-  /* ── Shared decorative layers ── */
-  const SharedLayers = (
-    <>
-      <motion.div
-        aria-hidden
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear", delay: index * 0.3 }}
-        className={`pointer-events-none absolute -inset-px rounded-3xl bg-[length:200%_200%] bg-gradient-to-r ${project.accent || "from-violet-500/25 via-cyan-400/20 to-blue-500/25"} opacity-35`}
-      />
-      <div className="pointer-events-none absolute inset-[1px] rounded-3xl bg-[#080b14]/90" />
-      <div
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-400 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle at ${glowPos.x}% ${glowPos.y}%, rgba(34,211,238,0.22), transparent 58%)`,
-        }}
-      />
-    </>
-  );
-
-  /* ── Preview thumbnail ── */
-  const Thumbnail = ({ height = "h-52", className = "" }) => (
-    <div className={`relative ${height} overflow-hidden rounded-2xl border border-white/15 bg-black/35 ${className}`}>
-      <motion.div
-        className={`absolute inset-0 bg-gradient-to-br ${project.accent || "from-violet-500/35 via-blue-500/20 to-cyan-400/30"}`}
-        animate={{ scale: [1, 1.06, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.22),transparent_55%),linear-gradient(160deg,rgba(0,0,0,0)_10%,rgba(0,0,0,0.42)_90%)]"
-        whileHover={{ scale: 1.08 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      />
-      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,#ffffff14_1px,transparent_1px),linear-gradient(to_bottom,#ffffff14_1px,transparent_1px)] [background-size:22px_22px]" />
-      <div className="absolute inset-x-4 bottom-4">
-        <p className="text-[11px] uppercase tracking-[0.26em] text-cyan-100/85">Project Preview</p>
-        <p className="font-poppins mt-1 text-xl font-semibold text-white">{project.preview}</p>
-      </div>
-    </div>
-  );
-
-  /* ── FEATURED (wide horizontal) card ── */
-  if (project.featured) {
-    return (
+    <Reveal className="w-full">
       <motion.article
-        variants={revealVariant}
-        style={{ rotateX: smoothX, rotateY: smoothY, transformStyle: "preserve-3d" }}
-        whileHover={{ y: -8, scale: 1.01 }}
-        whileTap={{ scale: 0.985 }}
-        onMouseMove={handleMove}
-        onMouseLeave={resetTilt}
-        className="group relative overflow-hidden rounded-3xl border border-white/15 bg-black/35 shadow-[0_16px_45px_rgba(0,0,0,0.35)] [perspective:1500px] col-span-1 sm:col-span-2 lg:col-span-3"
+        whileHover={{ y: -6 }}
+        transition={{ duration: 0.3 }}
+        className="group relative overflow-hidden rounded-[28px] border border-[#3c3c3c] bg-[#1e1e1e] text-white shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-300 hover:border-[#4d4d4d] hover:shadow-[0_25px_60px_rgba(0,0,0,0.8)]"
       >
-        {SharedLayers}
-        <div className="relative z-10 flex flex-col lg:flex-row">
-          {/* Left: big thumbnail */}
-          <div className="lg:w-2/5 shrink-0 p-4 pb-0 lg:pb-4 lg:pr-0">
-            <Thumbnail height="h-56 lg:h-full" className="lg:min-h-[240px]" />
-          </div>
-          {/* Right: content */}
-          <div className="flex flex-col justify-between p-6 lg:p-8">
-            <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] text-cyan-200 mb-3">
-                <Sparkles className="h-3 w-3" /> Featured Project
-              </span>
-              <h3 className="font-poppins text-2xl font-bold text-white md:text-3xl">{project.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-zinc-300/90">{project.desc}</p>
+        {/* Subtle hover monochrome glow overlay */}
+        <div className="pointer-events-none absolute -inset-px rounded-[28px] bg-gradient-to-r from-white/[0.02] via-white/[0.06] to-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
+        <div
+          className={`relative z-10 flex flex-col lg:flex-row items-stretch ${
+            !isEven ? "lg:flex-row-reverse" : ""
+          }`}
+        >
+          {/* Visual / Logo Area */}
+          <div
+            className={`w-full lg:w-[44%] shrink-0 p-6 sm:p-8 lg:p-10 flex items-center justify-center bg-[#111111] border-b lg:border-b-0 ${
+              isEven ? "lg:border-r border-[#3c3c3c]" : "lg:border-l border-[#3c3c3c]"
+            }`}
+          >
+            {project.logo ? (
+              <div className="relative w-full h-56 sm:h-64 lg:h-80 flex items-center justify-center p-4">
+                <img
+                  src={project.logo}
+                  alt={`${project.name} logo`}
+                  className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_10px_25px_rgba(0,0,0,0.7)]"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <div className="w-full h-56 sm:h-64 lg:h-80 flex flex-col items-center justify-center p-4 text-zinc-400">
+                <Code2 className="h-16 w-16 text-zinc-400 mb-3" />
+                <span className="font-poppins font-semibold text-zinc-200 text-lg">
+                  {project.name}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Project Information Area */}
+          <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+            <div>
+              {/* Category label */}
+              <div className="inline-flex items-center gap-2 mb-2">
+                <span className="h-2 w-2 rounded-full bg-[#4d4d4d] border border-zinc-400/30" />
+                <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                  {project.category}
+                </span>
+              </div>
+
+              {/* Project title */}
+              <h3 className="font-poppins text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                {project.name}
+              </h3>
+
+              {/* Description */}
+              <p className="mt-3 text-sm sm:text-base leading-relaxed text-zinc-300/85">
+                {project.description}
+              </p>
+
+              {/* Academic/License note if applicable */}
+              {project.note ? (
+                <p className="mt-2 text-xs italic text-zinc-400">
+                  Note: {project.note}
+                </p>
+              ) : null}
+
+              {/* Key Features */}
               {project.features?.length ? (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.features.slice(0, 4).map((feature) => (
-                    <div
-                      key={feature}
-                      className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-zinc-200/90"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                      {feature}
-                    </div>
-                  ))}
+                <div className="mt-5">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2.5">
+                    Key Features
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {project.features.map((feature) => (
+                      <div
+                        key={feature}
+                        className="flex items-start gap-2 text-xs text-zinc-300 leading-snug"
+                      >
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#4d4d4d] shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ) : null}
             </div>
 
-            <div className="mt-5">
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-white/15 bg-black/35 px-3 py-1 text-xs text-zinc-200"
+            {/* Bottom: Tech Stack Badges and Action Buttons */}
+            <div className="mt-6 pt-5 border-t border-[#3c3c3c]">
+              {/* Technologies */}
+              {project.technologies?.length ? (
+                <div className="mb-5 flex flex-wrap gap-1.5">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full bg-[#111111] border border-[#3c3c3c] px-3 py-1 text-[11px] font-medium text-zinc-300 transition-colors hover:border-[#4d4d4d] hover:text-white"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+
+              {/* Animated Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Primary Action Button: GitHub */}
+                {project.githubUrl ? (
+                  <motion.a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="btn-animated group relative inline-flex items-center gap-2 rounded-full border border-[#4d4d4d] bg-gradient-to-r from-[#111111] via-[#1e1e1e] to-[#111111] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 hover:border-white overflow-hidden"
                   >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {project.links?.live ? (
-                  <ProjectButton href={project.links.live} icon={ExternalLink} isLive={true}>
-                    Live Demo
-                  </ProjectButton>
+                    <Github className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover:rotate-6" />
+                    <span className="relative z-10">GitHub</span>
+                    <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[150%]" />
+                  </motion.a>
                 ) : null}
-                {project.links?.github ? (
-                  <ProjectButton href={project.links.github} icon={Github} isLive={false}>
-                    GitHub
-                  </ProjectButton>
+
+                {/* Secondary Action Button: Live Demo */}
+                {project.liveUrl ? (
+                  <motion.a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative inline-flex items-center gap-2 rounded-full border border-[#3c3c3c] bg-[#111111] px-5 py-2.5 text-xs sm:text-sm font-semibold text-zinc-200 backdrop-blur-md transition-all duration-300 hover:border-white hover:text-white shadow-[0_4px_15px_rgba(0,0,0,0.3)] overflow-hidden"
+                  >
+                    <ExternalLink className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                    <span className="relative z-10">Live Demo</span>
+                    <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[150%]" />
+                  </motion.a>
+                ) : null}
+
+                {/* Secondary Action Button: APK Download */}
+                {project.apkUrl ? (
+                  <motion.a
+                    href={project.apkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative inline-flex items-center gap-2 rounded-full border border-[#3c3c3c] bg-[#111111] px-5 py-2.5 text-xs sm:text-sm font-semibold text-zinc-200 backdrop-blur-md transition-all duration-300 hover:border-white hover:text-white shadow-[0_4px_15px_rgba(0,0,0,0.3)] overflow-hidden"
+                  >
+                    <Download className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover:translate-y-0.5" />
+                    <span className="relative z-10">Download APK</span>
+                    <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[150%]" />
+                  </motion.a>
                 ) : null}
               </div>
             </div>
           </div>
         </div>
       </motion.article>
-    );
-  }
-
-  /* ── COMPACT (vertical) card ── */
-  return (
-    <motion.article
-      variants={revealVariant}
-      style={{ rotateX: smoothX, rotateY: smoothY, transformStyle: "preserve-3d" }}
-      whileHover={{ y: -10, scale: 1.01 }}
-      whileTap={{ scale: 0.985 }}
-      onMouseMove={handleMove}
-      onMouseLeave={resetTilt}
-      className="group relative overflow-hidden rounded-3xl border border-white/15 bg-black/35 p-6 shadow-[0_16px_45px_rgba(0,0,0,0.35)] [perspective:1500px]"
-    >
-      {SharedLayers}
-      <div className="relative z-10">
-        <Thumbnail height="h-44" />
-        <h3 className="font-poppins mt-5 text-xl font-semibold text-white">{project.title}</h3>
-        <p className="mt-2 text-xs leading-6 text-zinc-300/90 line-clamp-3">{project.desc}</p>
-
-        {project.features?.length ? (
-          <div className="mt-3 grid gap-1.5">
-            {project.features.slice(0, 3).map((feature) => (
-              <div
-                key={feature}
-                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-zinc-200/90"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                {feature}
-              </div>
-            ))}
-          </div>
-        ) : null}
-
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-white/15 bg-black/35 px-2.5 py-1 text-[11px] text-zinc-200"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.links?.live ? (
-            <ProjectButton href={project.links.live} icon={ExternalLink} isLive={true}>
-              Live Demo
-            </ProjectButton>
-          ) : null}
-          {project.links?.github ? (
-            <ProjectButton href={project.links.github} icon={Github} isLive={false}>
-              GitHub
-            </ProjectButton>
-          ) : null}
-        </div>
-      </div>
-    </motion.article>
+    </Reveal>
   );
 }
 
@@ -850,27 +681,27 @@ function ExperienceTimeline() {
               layout
               className={`relative overflow-hidden rounded-2xl border transition-all duration-300 ${
                 isOpen
-                  ? "border-cyan-300/40 bg-gradient-to-br from-violet-500/10 via-blue-500/5 to-cyan-300/5"
-                  : "border-white/10 bg-white/[0.03]"
+                  ? "border-[#4d4d4d] bg-[#1e1e1e]"
+                  : "border-[#3c3c3c] bg-[#111111]"
               }`}
             >
-              {/* Glow strip on active */}
+              {/* Subtle light glow on active */}
               {isOpen && (
-                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(125deg,rgba(139,92,246,0.12),rgba(34,211,238,0.06),transparent_70%)]" />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06),transparent_70%)]" />
               )}
 
               {/* Header row — always visible */}
               <button
                 type="button"
                 onClick={() => setMobileOpen(isOpen ? -1 : i)}
-                className="relative z-10 flex w-full items-center gap-4 p-4 text-left"
+                className="relative z-10 flex w-full items-center gap-4 p-4 text-left transition-colors hover:bg-white/[0.02]"
               >
                 {/* Icon bubble */}
                 <div
                   className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-300 ${
                     isOpen
-                      ? "border-cyan-300 bg-gradient-to-br from-violet-500 to-cyan-400 text-white shadow-[0_0_0_4px_rgba(34,211,238,0.15)]"
-                      : "border-white/15 bg-black/35 text-zinc-400"
+                      ? "border-white bg-gradient-to-br from-[#4d4d4d] to-[#1e1e1e] text-white shadow-[0_0_0_4px_rgba(255,255,255,0.12)]"
+                      : "border-[#3c3c3c] bg-[#111111] text-zinc-400"
                   }`}
                 >
                   <Icon className="h-4.5 w-4.5" />
@@ -886,7 +717,7 @@ function ExperienceTimeline() {
 
                 {/* Date badge + chevron */}
                 <div className="flex shrink-0 flex-col items-end gap-1">
-                  <span className="rounded-full border border-cyan-300/25 bg-cyan-300/10 px-2 py-0.5 text-[10px] text-cyan-200">
+                  <span className="rounded-full border border-[#3c3c3c] bg-[#111111] px-2 py-0.5 text-[10px] text-zinc-300">
                     {exp.date}
                   </span>
                   <motion.span
@@ -907,13 +738,13 @@ function ExperienceTimeline() {
                 className="overflow-hidden"
               >
                 <div className="relative z-10 px-4 pb-4 pt-0">
-                  <div className="h-px w-full bg-white/10 mb-3" />
+                  <div className="h-px w-full bg-[#3c3c3c] mb-3" />
                   <p className="text-xs leading-6 text-zinc-300/90">{exp.description}</p>
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {exp.badges.map((badge) => (
                       <span
                         key={badge}
-                        className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] text-zinc-200/90"
+                        className="rounded-full border border-[#3c3c3c] bg-[#1e1e1e] px-2.5 py-1 text-[10px] text-zinc-300"
                       >
                         {badge}
                       </span>
@@ -931,10 +762,10 @@ function ExperienceTimeline() {
         {/* Timeline nodes row */}
         <div className="relative flex items-start">
           {/* Track line */}
-          <div className="pointer-events-none absolute left-10 right-10 top-7 h-[2px] bg-gradient-to-r from-violet-500/30 via-cyan-300/50 to-violet-500/30" />
+          <div className="pointer-events-none absolute left-10 right-10 top-7 h-[2px] bg-[#3c3c3c]" />
           {/* Progress line */}
           <div
-            className="pointer-events-none absolute left-10 top-7 h-[2px] bg-gradient-to-r from-violet-500 to-cyan-300 transition-all duration-500"
+            className="pointer-events-none absolute left-10 top-7 h-[2px] bg-gradient-to-r from-[#4d4d4d] to-white transition-all duration-500"
             style={{
               width: `calc(((100% - 80px) / ${experience.length - 1}) * ${active} + 40px)`,
             }}
@@ -948,20 +779,20 @@ function ExperienceTimeline() {
                 key={`${expItem.date}-${expItem.role}`}
                 type="button"
                 onClick={() => setActive(i)}
-                className="relative z-10 flex flex-1 flex-col items-center gap-2 group"
+                className="relative z-10 flex flex-1 flex-col items-center gap-2 group transition-transform duration-200 hover:-translate-y-1"
               >
                 <div
                   className={`flex h-14 w-14 items-center justify-center rounded-full border-2 transition-all duration-300 ${
                     isActive
-                      ? "border-cyan-300 bg-gradient-to-br from-violet-500 to-cyan-400 shadow-[0_0_0_4px_rgba(34,211,238,0.2)] text-white"
-                      : "border-white/15 bg-black/35 text-zinc-400 group-hover:border-violet-400/60 group-hover:text-violet-200"
+                      ? "border-white bg-gradient-to-br from-[#4d4d4d] to-[#1e1e1e] shadow-[0_0_0_4px_rgba(255,255,255,0.15)] text-white"
+                      : "border-[#3c3c3c] bg-[#111111] text-zinc-400 group-hover:border-[#4d4d4d] group-hover:text-white"
                   }`}
                 >
                   <Icon className="h-5 w-5" />
                 </div>
                 <span
-                  className={`hidden text-center text-[10px] leading-tight sm:block ${
-                    isActive ? "text-zinc-300" : "text-zinc-500 group-hover:text-zinc-400"
+                  className={`hidden text-center text-[10px] leading-tight sm:block transition-colors ${
+                    isActive ? "text-white font-medium" : "text-zinc-500 group-hover:text-zinc-300"
                   }`}
                 >
                   {expItem.date}
@@ -977,27 +808,27 @@ function ExperienceTimeline() {
           initial={{ opacity: 0, y: -14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 overflow-hidden rounded-3xl border border-cyan-300/20 bg-black/35 p-8 shadow-[0_18px_45px_rgba(0,0,0,0.4)] backdrop-blur-xl"
+          className="mt-8 overflow-hidden rounded-3xl border border-[#3c3c3c] bg-[#1e1e1e] p-8 shadow-[0_18px_45px_rgba(0,0,0,0.6)] backdrop-blur-xl"
         >
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(125deg,rgba(139,92,246,0.14),rgba(59,130,246,0.1),rgba(8,12,22,0.86))]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.04),transparent_70%)]" />
           <div className="relative z-10">
-            <span className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-cyan-200">
+            <span className="inline-flex rounded-full border border-[#4d4d4d] bg-[#111111] px-3 py-1 text-xs uppercase tracking-[0.18em] text-zinc-300">
               {item.date}
             </span>
             <h3 className="font-poppins mt-4 text-2xl font-semibold text-white">
               {item.role}
             </h3>
-            <p className="mt-1 text-sm font-medium text-violet-200/90">
+            <p className="mt-1 text-sm font-medium text-zinc-400">
               {item.organization}
             </p>
-            <p className="mt-4 text-sm leading-7 text-zinc-200/90">
+            <p className="mt-4 text-sm leading-7 text-zinc-300/90">
               {item.description}
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {item.badges.map((badge) => (
                 <span
                   key={badge}
-                  className="rounded-full border border-white/15 bg-black/35 px-3 py-1 text-[11px] text-zinc-200/90"
+                  className="rounded-full border border-[#3c3c3c] bg-[#111111] px-3 py-1 text-[11px] text-zinc-300"
                 >
                   {badge}
                 </span>
@@ -1011,118 +842,401 @@ function ExperienceTimeline() {
   );
 }
 
-function TechEcosystemGraphic() {
+const orbit3DPlanes = [
+  {
+    radius: 2.3,
+    tiltX: 0.22,
+    tiltZ: -0.06,
+    color: "#ffffff",
+    opacity: 0.22,
+  },
+  {
+    radius: 3.7,
+    tiltX: 0.32,
+    tiltZ: 0.08,
+    color: "#d4d4d8",
+    opacity: 0.18,
+  },
+  {
+    radius: 5.1,
+    tiltX: 0.24,
+    tiltZ: -0.12,
+    color: "#a1a1aa",
+    opacity: 0.18,
+  },
+  {
+    radius: 6.5,
+    tiltX: 0.36,
+    tiltZ: 0.14,
+    color: "#71717a",
+    opacity: 0.16,
+  },
+];
+
+const technologyPlanets3D = [
+  {
+    name: "React",
+    Icon: FaReact,
+    color: "#61DAFB",
+    glowColor: "rgba(97, 218, 251, 0.6)",
+    radius: 2.3,
+    size: 0.34,
+    duration: 12,
+    clockwise: true,
+    initialAngle: 0,
+    tiltX: 0.22,
+    tiltZ: -0.06,
+  },
+  {
+    name: "Node.js",
+    Icon: FaNodeJs,
+    color: "#68A063",
+    glowColor: "rgba(104, 160, 99, 0.6)",
+    radius: 2.3,
+    size: 0.30,
+    duration: 17,
+    clockwise: true,
+    initialAngle: Math.PI,
+    tiltX: 0.22,
+    tiltZ: -0.06,
+  },
+  {
+    name: "Python",
+    Icon: FaPython,
+    color: "#FFD43B",
+    glowColor: "rgba(255, 212, 59, 0.6)",
+    radius: 3.7,
+    size: 0.32,
+    duration: 22,
+    clockwise: false,
+    initialAngle: 1.3,
+    tiltX: 0.32,
+    tiltZ: 0.08,
+  },
+  {
+    name: "Flutter",
+    Icon: SiFlutter,
+    color: "#45D1FD",
+    glowColor: "rgba(69, 209, 253, 0.6)",
+    radius: 3.7,
+    size: 0.28,
+    duration: 15,
+    clockwise: false,
+    initialAngle: 4.4,
+    tiltX: 0.32,
+    tiltZ: 0.08,
+  },
+  {
+    name: "MongoDB",
+    Icon: SiMongodb,
+    color: "#4DB33D",
+    glowColor: "rgba(77, 179, 61, 0.6)",
+    radius: 5.1,
+    size: 0.31,
+    duration: 27,
+    clockwise: true,
+    initialAngle: 2.5,
+    tiltX: 0.24,
+    tiltZ: -0.12,
+  },
+  {
+    name: "Express",
+    Icon: SiExpress,
+    color: "#CBD5E1",
+    glowColor: "rgba(203, 213, 225, 0.5)",
+    radius: 5.1,
+    size: 0.26,
+    duration: 32,
+    clockwise: true,
+    initialAngle: 5.6,
+    tiltX: 0.24,
+    tiltZ: -0.12,
+  },
+  {
+    name: "Firebase",
+    Icon: SiFirebase,
+    color: "#FFCA28",
+    glowColor: "rgba(255, 202, 40, 0.6)",
+    radius: 6.5,
+    size: 0.28,
+    duration: 24,
+    clockwise: false,
+    initialAngle: 0.9,
+    tiltX: 0.36,
+    tiltZ: 0.14,
+  },
+  {
+    name: "GitHub",
+    Icon: Github,
+    color: "#FFFFFF",
+    glowColor: "rgba(255, 255, 255, 0.55)",
+    radius: 6.5,
+    size: 0.30,
+    duration: 36,
+    clockwise: false,
+    initialAngle: 4.0,
+    tiltX: 0.36,
+    tiltZ: 0.14,
+  },
+];
+
+function CentralStar3D() {
+  const coronaRef = useRef();
+  const auraRef = useRef();
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    if (coronaRef.current) {
+      const s = 1 + Math.sin(time * 2.2) * 0.05;
+      coronaRef.current.scale.set(s, s, s);
+    }
+    if (auraRef.current) {
+      const s2 = 1 + Math.sin(time * 1.6 + 0.8) * 0.08;
+      auraRef.current.scale.set(s2, s2, s2);
+    }
+  });
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto mt-14 w-full max-w-[620px] lg:mt-24"
-    >
-      <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-2xl">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(130deg,rgba(139,92,246,0.09),rgba(56,189,248,0.04),transparent_70%)]" />
-        <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:34px_34px]" />
+    <group position={[0, 0, 0]}>
+      {/* Central Omnidirectional Star Light */}
+      <pointLight color="#ffffff" intensity={70} distance={22} decay={1.8} />
+      <pointLight color="#e4e4e7" intensity={40} distance={14} decay={1.4} />
 
-        <div className="relative h-[460px] w-full">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-            className="absolute left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/20"
+      {/* Luminous Star Sphere */}
+      <mesh>
+        <sphereGeometry args={[0.7, 32, 32]} />
+        <meshBasicMaterial color="#ffffff" />
+      </mesh>
+
+      {/* Inner Radiant Corona */}
+      <mesh ref={coronaRef}>
+        <sphereGeometry args={[0.92, 32, 32]} />
+        <meshBasicMaterial
+          color="#d4d4d8"
+          transparent
+          opacity={0.32}
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      {/* Outer Atmospheric Aura */}
+      <mesh ref={auraRef}>
+        <sphereGeometry args={[1.2, 32, 32]} />
+        <meshBasicMaterial
+          color="#a1a1aa"
+          transparent
+          opacity={0.14}
+          side={THREE.BackSide}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function OrbitRing3D({ radius, tiltX, tiltZ, color, opacity }) {
+  const lineGeometry = useMemo(() => {
+    const pts = [];
+    const segments = 128;
+    for (let i = 0; i <= segments; i++) {
+      const theta = (i / segments) * Math.PI * 2;
+      pts.push(new THREE.Vector3(Math.cos(theta) * radius, 0, Math.sin(theta) * radius));
+    }
+    return new THREE.BufferGeometry().setFromPoints(pts);
+  }, [radius]);
+
+  return (
+    <group rotation={[tiltX, 0, tiltZ]}>
+      <line geometry={lineGeometry}>
+        <lineBasicMaterial color={color} transparent opacity={opacity} />
+      </line>
+    </group>
+  );
+}
+
+function OrbitingPlanet3D({ planet, tiltX, tiltZ }) {
+  const planetGroupRef = useRef();
+  const sphereMeshRef = useRef();
+
+  useFrame((state, delta) => {
+    if (!planetGroupRef.current) return;
+    const time = state.clock.getElapsedTime();
+    const speed = (Math.PI * 2) / planet.duration;
+    const angle = (planet.clockwise ? -1 : 1) * time * speed + planet.initialAngle;
+
+    // Revolution around star along the tilted orbit plane
+    planetGroupRef.current.position.x = Math.cos(angle) * planet.radius;
+    planetGroupRef.current.position.z = Math.sin(angle) * planet.radius;
+    planetGroupRef.current.position.y = 0;
+
+    // Axial self-rotation of the spherical planet
+    if (sphereMeshRef.current) {
+      sphereMeshRef.current.rotation.y += delta * 0.7;
+    }
+  });
+
+  return (
+    <group rotation={[tiltX, 0, tiltZ]}>
+      <group ref={planetGroupRef}>
+        {/* Genuine 3D Spherical Geometry with realistic lighting & shadows */}
+        <mesh ref={sphereMeshRef} castShadow receiveShadow>
+          <sphereGeometry args={[planet.size, 32, 32]} />
+          <meshStandardMaterial
+            color={planet.color}
+            roughness={0.32}
+            metalness={0.25}
+            emissive={planet.color}
+            emissiveIntensity={0.15}
           />
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-            className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-400/15"
+        </mesh>
+
+        {/* Soft Atmospheric Rim */}
+        <mesh>
+          <sphereGeometry args={[planet.size * 1.1, 24, 24]} />
+          <meshBasicMaterial
+            color={planet.color}
+            transparent
+            opacity={0.18}
+            side={THREE.BackSide}
           />
+        </mesh>
 
-          <motion.div
-            animate={{
-              y: [0, -8, 0],
-              boxShadow: [
-                "0 0 20px rgba(59,130,246,0.22)",
-                "0 0 38px rgba(139,92,246,0.35)",
-                "0 0 20px rgba(59,130,246,0.22)",
-              ],
-            }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/20 bg-black/50 backdrop-blur-xl"
-          >
-            <Cpu className="h-10 w-10 text-cyan-300" />
-          </motion.div>
-
-          {ecosystemNodes.map(({ label, Icon, x, y, delay }) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
-              transition={{
-                opacity: { duration: 0.5, delay },
-                scale: { duration: 0.5, delay },
-                y: {
-                  duration: 3.2 + delay,
-                  delay,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
+        {/* Surface Icon & Camera-Facing Billboard Label */}
+        <Html
+          center
+          distanceFactor={13}
+          position={[0, 0, 0]}
+          className="pointer-events-none select-none"
+        >
+          <div className="flex flex-col items-center">
+            {/* Front-Facing Technology Icon */}
+            <div
+              className="flex items-center justify-center rounded-full"
+              style={{
+                width: `${planet.size * 88}px`,
+                height: `${planet.size * 88}px`,
+                filter: `drop-shadow(0 0 5px ${planet.glowColor})`,
               }}
-              style={{ left: x, top: y }}
-              className="absolute will-change-transform"
             >
-              <div className="flex items-center gap-2 rounded-full border border-white/15 bg-black/45 px-3 py-2 text-xs font-medium text-zinc-100 backdrop-blur-xl transition-colors hover:border-cyan-300/50">
-                <Icon className="h-4 w-4 text-cyan-300" />
-                <span>{label}</span>
-              </div>
-            </motion.div>
-          ))}
-
-          <div className="absolute inset-x-2 bottom-2 grid gap-3 sm:grid-cols-3">
-            {snippetCards.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: [0, -4, 0] }}
-                transition={{
-                  opacity: { duration: 0.5, delay: 0.4 + i * 0.12 },
-                  y: { duration: 4 + i, repeat: Infinity, ease: "easeInOut" },
+              <planet.Icon
+                style={{
+                  color: "#ffffff",
+                  width: `${planet.size * 52}px`,
+                  height: `${planet.size * 52}px`,
                 }}
-                className="rounded-xl border border-white/15 bg-black/55 p-3 text-xs text-zinc-300"
-              >
-                <p className="mb-1 text-[10px] uppercase tracking-[0.2em] text-cyan-300/80">
-                  {item.title}
-                </p>
-                <p className="font-mono text-[11px] leading-relaxed text-zinc-200">
-                  {item.content}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
+              />
+            </div>
 
-      <motion.div
-        variants={staggerVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        className="mt-5 grid gap-4 sm:grid-cols-2"
-      >
-        {featureCards.map((card) => {
-          const Icon = card.icon;
-          return (
-            <motion.article
-              key={card.title}
-              variants={revealVariant}
-              whileHover={{ y: -6 }}
-              className="card-glass p-5"
+            {/* Clean Billboard Label */}
+            <span
+              className="mt-1 font-mono text-[9px] sm:text-[10px] font-medium tracking-wider text-zinc-300 whitespace-nowrap px-1.5 py-0.5 rounded backdrop-blur-md border border-[#3c3c3c]"
+              style={{
+                background: "rgba(17, 17, 17, 0.85)",
+              }}
             >
-              <Icon className="mb-3 h-6 w-6 text-cyan-300" />
-              <h3 className="mb-2 text-base font-semibold text-white">{card.title}</h3>
-              <p className="text-sm leading-6 text-zinc-300/85">{card.text}</p>
-            </motion.article>
-          );
-        })}
-      </motion.div>
-    </motion.div>
+              {planet.name}
+            </span>
+          </div>
+        </Html>
+      </group>
+    </group>
+  );
+}
+
+function ResponsiveCamera() {
+  const { camera, size } = useThree();
+
+  useEffect(() => {
+    if (!size.width || !size.height) return;
+    const aspect = size.width / size.height;
+
+    // Outermost orbit is radius 6.5, with planet radius and label it reaches ~7.4.
+    // 8.1 target radius gives comfortable breathing room on all sides.
+    const targetBoundingRadius = 8.1;
+
+    const vFovRad = (camera.fov * Math.PI) / 360;
+    const tanFov = Math.tan(vFovRad);
+
+    // Distance required so targetBoundingRadius fits horizontally in visible width
+    const distForWidth = targetBoundingRadius / (tanFov * Math.max(aspect, 0.42));
+
+    // Distance required vertically (foreshortened by tilt ~0.82)
+    const distForHeight = (targetBoundingRadius * 0.82) / tanFov;
+
+    // Use the larger distance to avoid clipping in either dimension
+    const reqDist = Math.max(distForWidth, distForHeight, 14.2);
+
+    // Elevation angle (~27.5 degrees) for an immersive 3D angled perspective
+    const elevation = 0.48;
+    const y = reqDist * Math.sin(elevation);
+    const z = reqDist * Math.cos(elevation);
+
+    camera.position.set(0, y, z);
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height]);
+
+  return null;
+}
+
+function SolarSystem() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <div className="relative flex items-center justify-center w-full select-none">
+      {/* Background subtle monochrome ethereal atmospheric glow */}
+      <div className="pointer-events-none absolute h-[380px] w-[380px] rounded-full bg-white/[0.03] blur-3xl sm:h-[480px] sm:w-[480px] lg:h-[600px] lg:w-[600px]" />
+      <div className="pointer-events-none absolute h-[300px] w-[300px] rounded-full bg-zinc-500/[0.03] blur-2xl lg:h-[480px] lg:w-[480px]" />
+
+      {/* Full-size responsive 3D WebGL Canvas Viewport */}
+      <div className="relative w-full h-[400px] xs:h-[440px] sm:h-[500px] md:h-[560px] lg:h-[620px] xl:h-[680px]">
+        {mounted ? (
+          <Canvas
+            camera={{ position: [0, 6.8, 14.0], fov: 46 }}
+            gl={{ antialias: true, alpha: true }}
+            style={{ width: "100%", height: "100%", pointerEvents: "auto" }}
+          >
+            <ResponsiveCamera />
+
+            {/* Ambient Lighting & Fill */}
+            <ambientLight intensity={0.45} color="#27272a" />
+            <directionalLight position={[0, 8, 10]} intensity={0.5} color="#e4e4e7" />
+
+            {/* 3D Luminous Central Star */}
+            <CentralStar3D />
+
+            {/* 3D Inclined Orbit Rings */}
+            {orbit3DPlanes.map((orbit, idx) => (
+              <OrbitRing3D
+                key={`orbit-3d-${idx}`}
+                radius={orbit.radius}
+                tiltX={orbit.tiltX}
+                tiltZ={orbit.tiltZ}
+                color={orbit.color}
+                opacity={orbit.opacity}
+              />
+            ))}
+
+            {/* 3D Spherical Revolving Planets */}
+            {technologyPlanets3D.map((planet) => (
+              <OrbitingPlanet3D
+                key={planet.name}
+                planet={planet}
+                tiltX={planet.tiltX}
+                tiltZ={planet.tiltZ}
+              />
+            ))}
+          </Canvas>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="h-10 w-10 rounded-full border border-[#4d4d4d] animate-pulse bg-[#1e1e1e]" />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -1210,17 +1324,17 @@ export default function Home() {
   };
 
   return (
-    <main className="relative overflow-x-clip bg-[#06070d] text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(59,130,246,0.18),transparent_40%),radial-gradient(circle_at_80%_15%,rgba(139,92,246,0.22),transparent_40%),radial-gradient(circle_at_50%_100%,rgba(34,211,238,0.14),transparent_45%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:72px_72px]" />
+    <main className="relative overflow-x-clip bg-[#111111] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(77,77,77,0.12),transparent_40%),radial-gradient(circle_at_80%_15%,rgba(60,60,60,0.14),transparent_40%),radial-gradient(circle_at_50%_100%,rgba(30,30,30,0.25),transparent_45%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:72px_72px]" />
 
       <nav className="fixed inset-x-0 top-4 z-50 px-4 sm:px-6">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-2xl border border-white/15 bg-black/35 px-5 py-3 shadow-[0_8px_40px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-2xl border border-[#3c3c3c] bg-[#111111]/85 px-5 py-3 shadow-[0_8px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
           <a
             href="#home"
             className="text-lg font-semibold tracking-[0.2em] text-white sm:text-xl"
           >
-            FAZIL <span className="text-cyan-300">PORTFOLIO</span>
+            FAZIL <span className="text-zinc-400">PORTFOLIO</span>
           </a>
 
           <div className="hidden items-center gap-2 lg:flex">
@@ -1237,7 +1351,7 @@ export default function Home() {
                   {isActive ? (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 rounded-full border border-cyan-300/50 bg-gradient-to-r from-violet-500/25 to-cyan-400/20 shadow-[0_0_18px_rgba(34,211,238,0.25)]"
+                      className="absolute inset-0 rounded-full border border-[#4d4d4d] bg-[#1e1e1e] shadow-[0_0_15px_rgba(255,255,255,0.08)]"
                       transition={{
                         type: "spring",
                         stiffness: 320,
@@ -1246,7 +1360,7 @@ export default function Home() {
                     />
                   ) : null}
                   <span className="relative z-10">{item}</span>
-                  <span className="absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-cyan-300/60 transition-transform duration-300 group-hover:scale-x-100" />
+                  <span className="absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-white/80 transition-transform duration-300 group-hover:scale-x-100" />
                 </a>
               );
             })}
@@ -1254,7 +1368,7 @@ export default function Home() {
 
           <button
             type="button"
-            className="rounded-lg border border-white/15 bg-white/5 p-2 text-zinc-100 lg:hidden"
+            className="rounded-lg border border-[#3c3c3c] bg-[#1e1e1e] p-2 text-zinc-100 transition-colors hover:border-white hover:text-white lg:hidden"
             onClick={() => setOpen((prev) => !prev)}
             aria-label="Toggle navigation"
           >
@@ -1263,13 +1377,13 @@ export default function Home() {
         </div>
 
         {open ? (
-          <div className="mx-auto mt-2 max-w-7xl rounded-2xl border border-white/15 bg-black/70 p-4 backdrop-blur-2xl lg:hidden">
+          <div className="mx-auto mt-2 max-w-7xl rounded-2xl border border-[#3c3c3c] bg-[#111111]/95 p-4 backdrop-blur-2xl lg:hidden">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="rounded-lg px-3 py-2 text-zinc-200 transition-colors hover:bg-white/10"
+                  className="rounded-lg px-3 py-2 text-zinc-200 transition-colors hover:bg-[#1e1e1e] hover:text-white"
                   onClick={() => setOpen(false)}
                 >
                   {item}
@@ -1282,43 +1396,55 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative px-6 pb-24 pt-36 md:pt-40 lg:pb-32 lg:pt-44"
+        className="relative px-6 pb-20 pt-32 sm:pt-36 lg:pb-28 lg:pt-40"
       >
-        <div className="mx-auto grid w-full max-w-7xl gap-14 lg:grid-cols-2 lg:items-start lg:gap-24">
-          <Reveal className="relative z-10">
-            <div className="font-poppins mb-6 inline-flex w-fit rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-sm text-violet-200 backdrop-blur-xl">
-              Full Stack Developer and Systems Enthusiast
-            </div>
-
-            <h1 className="font-poppins text-balance text-5xl font-semibold leading-[0.95] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-              Building
-              <span className="ml-3 inline-block bg-gradient-to-r from-violet-300 via-cyan-300 to-blue-400 bg-clip-text text-transparent [text-shadow:0_0_38px_rgba(34,211,238,0.35)]">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 lg:grid-cols-[46%_54%] xl:gap-12">
+          <Reveal className="relative z-10 flex flex-col justify-center">
+            <h1 className="font-poppins text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] leading-[1.14]">
+              Building{" "}
+              <span className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
                 futuristic
               </span>
               <br />
               digital experiences.
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300/90 md:text-xl md:leading-9">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300/85 sm:text-lg sm:leading-relaxed">
               I design immersive full-stack applications, scalable backend
               systems, networking tools, and premium interfaces with modern web
               technologies.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <PremiumButton href="#projects" icon={ArrowRight}>
-                View Projects
-              </PremiumButton>
-              <PremiumButton
+            {/* Animated Action Buttons */}
+            <div className="mt-8 flex flex-wrap items-center gap-3.5">
+              <motion.a
+                href="#projects"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="btn-animated group relative inline-flex items-center gap-2 rounded-full border border-[#4d4d4d] bg-gradient-to-r from-[#1e1e1e] via-[#3c3c3c] to-[#1e1e1e] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-white overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  View Projects
+                  <ArrowRight className="h-4 w-4 text-zinc-300 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+                <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[150%]" />
+              </motion.a>
+
+              <motion.a
                 href="/FazilPRaphiResume.pdf"
                 download="FazilPRaphiResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border-white/20 from-white/10 to-white/5"
-                icon={Download}
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative inline-flex items-center gap-2 rounded-full border border-[#3c3c3c] bg-[#1e1e1e] px-6 py-3 text-sm font-semibold text-zinc-200 shadow-[0_4px_15px_rgba(0,0,0,0.3)] backdrop-blur-md transition-all duration-300 hover:border-white hover:text-white overflow-hidden"
               >
-                Resume
-              </PremiumButton>
+                <span className="relative z-10 flex items-center gap-2">
+                  Resume
+                  <Download className="h-4 w-4 text-zinc-400 transition-transform duration-300 group-hover:translate-y-0.5" />
+                </span>
+                <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[150%]" />
+              </motion.a>
             </div>
 
             <motion.div
@@ -1326,49 +1452,35 @@ export default function Home() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
-              className="mt-10 flex flex-wrap gap-4"
+              className="mt-7 flex items-center gap-3"
             >
               {socialLinks.map(({ label, href, Icon }) => (
                 <motion.a
-                  variants={revealVariant}
-                  whileHover={{ y: -4, scale: 1.05 }}
-                  whileTap={{ scale: 0.96 }}
                   key={label}
+                  variants={revealVariant}
+                  whileHover={{ y: -2, scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noreferrer" : undefined}
                   aria-label={label}
-                  className="rounded-2xl border border-white/15 bg-white/5 p-4 text-zinc-100 backdrop-blur-xl transition-colors hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                  className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-[#3c3c3c] bg-[#1e1e1e] text-zinc-400 backdrop-blur-md transition-all duration-300 hover:border-white hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.15)] overflow-hidden"
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[150%]" />
                 </motion.a>
               ))}
             </motion.div>
           </Reveal>
 
-          <TechEcosystemGraphic />
+          <div className="relative w-full flex items-center justify-center overflow-visible">
+            <SolarSystem />
+          </div>
         </div>
       </section>
 
       <section id="about" className="relative px-6 py-28 md:py-36">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(139,92,246,0.22),transparent_40%),radial-gradient(circle_at_80%_65%,rgba(34,211,238,0.2),transparent_46%)]" />
-        <motion.div
-          aria-hidden
-          animate={{ opacity: [0.45, 0.75, 0.45] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none absolute -left-16 top-12 h-56 w-56 rounded-full bg-violet-500/20 blur-3xl"
-        />
-        <motion.div
-          aria-hidden
-          animate={{ opacity: [0.5, 0.8, 0.5] }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.7,
-          }}
-          className="pointer-events-none absolute -bottom-10 right-8 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl"
-        />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(60,60,60,0.18),transparent_40%),radial-gradient(circle_at_80%_65%,rgba(77,77,77,0.15),transparent_46%)]" />
 
         <div className="mx-auto max-w-7xl">
           <SectionTitle title="About Me" subtitle="Who I Am" />
@@ -1378,131 +1490,31 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.12 }}
-            className="grid gap-6 lg:grid-cols-12"
+            className="mx-auto max-w-4xl space-y-6 text-base leading-8 text-zinc-200/90 md:text-lg"
           >
-            <motion.div variants={revealVariant} className="lg:col-span-8">
-              <AboutFlipCard
-                icon={Sparkles}
-                badge="Core Story"
-                title="Passionate about engineering immersive digital systems."
-                preview="Designing high-performance full-stack products where system architecture and cinematic UI are equally intentional."
-                backTitle="Engineering Philosophy"
-                backText="I build software as an end-to-end product experience: strong architecture, robust APIs, and interface systems that feel effortless."
-                backPoints={[
-                  "System design + scalability mindset",
-                  "UI/UX craft with interaction depth",
-                  "Performance-first engineering decisions",
-                ]}
-                minHeightClass="min-h-[460px] sm:min-h-[400px] lg:min-h-[360px]"
-                frontExtra={
-                  <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/25 p-4">
-                    <motion.div
-                      className="absolute inset-0 bg-[linear-gradient(120deg,rgba(139,92,246,0.2),transparent_50%,rgba(34,211,238,0.2))]"
-                      animate={{
-                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                      }}
-                      transition={{
-                        duration: 9,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    />
-                    <div className="relative z-10 flex flex-wrap gap-2 text-xs text-zinc-100/90">
-                      {[
-                        "Next.js",
-                        "Node.js",
-                        "MongoDB",
-                        "Framer Motion",
-                        "Redis",
-                        "Docker",
-                      ].map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-white/15 bg-black/35 px-3 py-1"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                }
-                backExtra={
-                  <div className="flex items-center gap-2 text-xs text-cyan-200/90">
-                    <Cpu className="h-4 w-4" />
-                    <span>Systems thinking + motion-led product craft</span>
-                  </div>
-                }
-              />
-            </motion.div>
-
-            <motion.div variants={revealVariant} className="lg:col-span-4">
-              <AboutFlipCard
-                icon={Cpu}
-                badge="Current Focus"
-                title="Realtime architecture and polished motion interfaces."
-                preview="Balancing backend reliability with premium user experiences and frontend performance."
-                backTitle="What I am Building Now"
-                backText="I am focused on systems that are fast, observable, and delightful to use."
-                backPoints={[
-                  "Backend engineering + APIs",
-
-                  "Full-stack architecture decisions",
-                  "Motion UI systems and microinteractions",
-                  "Performance optimization and real-time state",
-                ]}
-                minHeightClass="min-h-[360px]"
-                frontExtra={
-                  <div className="grid grid-cols-3 gap-2">
-                    {[Server, Database, Sparkles].map((Icon, i) => (
-                      <motion.div
-                        key={i}
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{
-                          duration: 3 + i,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                        className="flex items-center justify-center rounded-xl border border-cyan-300/25 bg-cyan-300/10 py-2"
-                      >
-                        <Icon className="h-4 w-4 text-cyan-200" />
-                      </motion.div>
-                    ))}
-                  </div>
-                }
-              />
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            variants={staggerVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.16 }}
-            className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-4"
-          >
-            {aboutStats.map((stat) => {
-              const Icon = stat.icon;
-              return (
-                <motion.div key={stat.label} variants={revealVariant}>
-                  <AboutFlipCard
-                    icon={Icon}
-                    badge="Stat"
-                    title={stat.number}
-                    preview={stat.label}
-                    backTitle={stat.label}
-                    backText="Highlights behind this metric."
-                    backPoints={stat.details}
-                    minHeightClass="min-h-[255px]"
-                    frontExtra={
-                      <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300">
-                        <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                        Live profile signal
-                      </div>
-                    }
-                  />
-                </motion.div>
-              );
-            })}
+            <motion.p variants={revealVariant}>
+              I&apos;m a software developer who enjoys turning ideas into practical,
+              polished digital products. I build across the full stack, from
+              shaping responsive interfaces to connecting them with dependable
+              backend services.
+            </motion.p>
+            <motion.p variants={revealVariant}>
+              My work includes web applications, APIs, and data-driven projects
+              using technologies such as React, Next.js, Node.js, and databases.
+              I care about clear architecture, performance, and making products
+              intuitive to use.
+            </motion.p>
+            <motion.p variants={revealVariant}>
+              I&apos;m also interested in AI/ML, data science, and cloud
+              technologies. Through personal projects and internship experience,
+              I continue developing my skills and learning how to apply these
+              tools to real-world problems.
+            </motion.p>
+            <motion.p variants={revealVariant}>
+              I value curiosity, thoughtful problem-solving, and continuous
+              improvement. I enjoy collaborating, taking ownership of challenges,
+              and building software that is both useful and reliable.
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -1521,26 +1533,24 @@ export default function Home() {
             {Object.entries(skillsWithIcons).map(([category, items]) => (
               <motion.div
                 variants={revealVariant}
-                whileHover={{ y: -8, scale: 1.01 }}
+                whileHover={{ y: -6, scale: 1.01 }}
                 key={category}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#0d1020]/90 via-[#0a0d1a]/80 to-[#06070d]/90 p-7 shadow-[0_16px_45px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:shadow-[0_20px_60px_rgba(34,211,238,0.08)]"
+                className="group relative overflow-hidden rounded-3xl border border-[#3c3c3c] bg-[#1e1e1e] p-7 shadow-[0_16px_45px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-[#4d4d4d]"
               >
-                {/* Category header glow */}
-                <div className="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-cyan-400/10 blur-2xl transition-opacity duration-500 group-hover:opacity-80 opacity-40" />
-                <div className="pointer-events-none absolute -bottom-8 -left-8 h-28 w-28 rounded-full bg-violet-500/10 blur-2xl" />
+                {/* Subtle light glow on hover */}
+                <div className="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-white/[0.04] blur-2xl transition-opacity duration-500 group-hover:opacity-100 opacity-40" />
 
                 <div className="relative z-10">
-                  <h3 className="mb-5 text-xl font-bold tracking-wide text-cyan-300">
+                  <h3 className="mb-5 text-xl font-bold tracking-wide text-white">
                     {category}
                   </h3>
                   <div className="flex flex-wrap gap-2.5">
                     {items.map(({ name, Icon, color }) => (
                       <motion.div
                         key={name}
-                        whileHover={{ y: -3, scale: 1.06 }}
+                        whileHover={{ y: -3, scale: 1.05 }}
                         transition={{ type: "spring", stiffness: 400, damping: 18 }}
-                        className="group/chip relative flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-zinc-200 backdrop-blur-sm transition-all duration-200 hover:border-white/25 hover:bg-white/[0.08]"
-                        style={{ boxShadow: `0 0 0 0 ${color}00` }}
+                        className="group/chip relative flex items-center gap-2 rounded-xl border border-[#3c3c3c] bg-[#111111] px-3 py-2 text-xs font-medium text-zinc-200 backdrop-blur-sm transition-all duration-200 hover:border-[#4d4d4d] hover:bg-[#1e1e1e]"
                       >
                         <span
                           className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md"
@@ -1551,7 +1561,7 @@ export default function Home() {
                         <span>{name}</span>
                         {/* subtle glow on hover */}
                         <span
-                          className="pointer-events-none absolute inset-0 rounded-xl opacity-0 blur-sm transition-opacity duration-300 group-hover/chip:opacity-30"
+                          className="pointer-events-none absolute inset-0 rounded-xl opacity-0 blur-sm transition-opacity duration-300 group-hover/chip:opacity-20"
                           style={{ background: color }}
                         />
                       </motion.div>
@@ -1574,26 +1584,20 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <motion.div
-            variants={staggerVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05 }}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          >
+          <div className="flex flex-col gap-10 sm:gap-14 lg:gap-16">
             {projects.map((project, i) => (
-              <ProjectShowcaseCard
-                key={project.title}
+              <ProjectCard
+                key={project.id}
                 project={project}
                 index={i}
               />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <section id="experience" className="relative px-6 py-28 md:py-32">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(139,92,246,0.24),transparent_42%),radial-gradient(circle_at_85%_65%,rgba(34,211,238,0.2),transparent_48%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(60,60,60,0.2),transparent_42%),radial-gradient(circle_at_85%_65%,rgba(77,77,77,0.15),transparent_48%)]" />
 
         <div className="relative mx-auto max-w-7xl">
           <SectionTitle title="Experience Timeline" subtitle="Journey" />
@@ -1611,25 +1615,22 @@ export default function Home() {
 
           {/* ── Education Card ── */}
           <Reveal className="mb-10">
-            <div className="relative overflow-hidden rounded-3xl border border-cyan-300/20 bg-gradient-to-br from-violet-500/10 via-blue-500/5 to-cyan-300/10 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl md:p-10">
-              {/* bg orbs */}
-              <div className="pointer-events-none absolute -top-12 -left-12 h-40 w-40 rounded-full bg-violet-500/20 blur-3xl" />
-              <div className="pointer-events-none absolute -bottom-10 -right-10 h-36 w-36 rounded-full bg-cyan-400/15 blur-3xl" />
-              <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:36px_36px]" />
+            <div className="relative overflow-hidden rounded-3xl border border-[#3c3c3c] bg-[#1e1e1e] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-xl md:p-10">
+              <div className="pointer-events-none absolute inset-0 opacity-15 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:36px_36px]" />
 
               <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
                 {/* Icon */}
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/30 bg-gradient-to-br from-violet-500/40 to-cyan-400/30 shadow-[0_0_30px_rgba(34,211,238,0.2)]"
+                  className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-[#4d4d4d] bg-[#111111] shadow-[0_0_25px_rgba(255,255,255,0.06)]"
                 >
-                  <GraduationCap className="h-10 w-10 text-cyan-200" />
+                  <GraduationCap className="h-10 w-10 text-white" />
                 </motion.div>
 
                 {/* Info */}
                 <div className="flex-1">
-                  <p className="mb-1 text-xs uppercase tracking-[0.3em] text-cyan-300/80">Degree</p>
+                  <p className="mb-1 text-xs uppercase tracking-[0.3em] text-zinc-400 font-bold">Degree</p>
                   <h3 className="font-poppins text-2xl font-bold text-white md:text-3xl">
                     Bachelor of Computer Science
                   </h3>
@@ -1638,13 +1639,13 @@ export default function Home() {
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {[
-                      { label: "2023 – 2027", icon: BookOpen, color: "text-cyan-300" },
-                      { label: "Software Engineering", icon: Code2, color: "text-violet-300" },
-                      { label: "Networking", icon: Globe, color: "text-blue-300" },
-                      { label: "Distributed Systems", icon: Server, color: "text-emerald-300" },
-                    ].map(({ label, icon: Ic, color }) => (
-                      <span key={label} className={`inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium ${color}`}>
-                        <Ic className="h-3 w-3" />
+                      { label: "2023 – 2027", icon: BookOpen },
+                      { label: "Software Engineering", icon: Code2 },
+                      { label: "Networking", icon: Globe },
+                      { label: "Distributed Systems", icon: Server },
+                    ].map(({ label, icon: Ic }) => (
+                      <span key={label} className="inline-flex items-center gap-1.5 rounded-full border border-[#3c3c3c] bg-[#111111] px-3 py-1 text-xs font-medium text-zinc-300">
+                        <Ic className="h-3 w-3 text-zinc-400" />
                         {label}
                       </span>
                     ))}
@@ -1972,8 +1973,7 @@ export default function Home() {
                 variants={revealVariant}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0d1a]/80 p-5 shadow-[0_10px_35px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 hover:border-white/20"
-                style={{ boxShadow: `0 10px 35px rgba(0,0,0,0.35)` }}
+                className="group relative overflow-hidden rounded-2xl border border-[#3c3c3c] bg-[#1e1e1e] p-5 shadow-[0_10px_35px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-[#4d4d4d]"
               >
                 {/* Glow on hover */}
                 <div
@@ -1984,7 +1984,7 @@ export default function Home() {
                 <div className="relative z-10 flex items-start gap-4">
                   {/* Icon bubble */}
                   <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#3c3c3c] bg-[#111111]"
                     style={{ boxShadow: `0 0 18px ${glow}` }}
                   >
                     <Ic className="h-5 w-5" style={{ color }} />
@@ -1995,7 +1995,7 @@ export default function Home() {
                     <p className="mt-0.5 text-xs text-zinc-400">{issuer}</p>
                     <div className="mt-2 flex flex-wrap items-center gap-1.5">
                       {date && (
-                        <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-400">
+                        <span className="rounded-full border border-[#3c3c3c] bg-[#111111] px-2 py-0.5 text-[10px] text-zinc-400">
                           {date}
                         </span>
                       )}
@@ -2020,8 +2020,8 @@ export default function Home() {
       </section>
 
       <section className="px-6 py-28 md:py-32">
-        <Reveal className="mx-auto max-w-5xl rounded-[40px] border border-cyan-300/20 bg-gradient-to-br from-violet-500/15 via-blue-500/10 to-cyan-300/10 p-14 text-center backdrop-blur-xl">
-          <h2 className="mb-6 text-5xl font-black">Resume</h2>
+        <Reveal className="mx-auto max-w-5xl rounded-[40px] border border-[#3c3c3c] bg-[#1e1e1e] p-14 text-center backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+          <h2 className="mb-6 text-5xl font-black text-white">Resume</h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-8 text-zinc-200/90">
             Explore a complete overview of projects, technical expertise,
             engineering experience, and professional achievements.
@@ -2039,15 +2039,13 @@ export default function Home() {
       </section>
 
       <section id="contact" className="relative w-full px-0 py-28 md:py-32">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(139,92,246,0.38),transparent_45%),radial-gradient(circle_at_82%_76%,rgba(34,211,238,0.3),transparent_52%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(60,60,60,0.2),transparent_45%),radial-gradient(circle_at_82%_76%,rgba(77,77,77,0.18),transparent_52%)]" />
         <div className="mx-auto w-full max-w-7xl px-6">
-          <Reveal className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-cyan-300/20 bg-[linear-gradient(140deg,rgba(139,92,246,0.2),rgba(59,130,246,0.14),rgba(10,20,35,0.7))] p-8 shadow-[0_30px_85px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:p-12">
-            <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:42px_42px]" />
-            <div className="pointer-events-none absolute -left-20 top-0 h-52 w-52 rounded-full bg-violet-400/30 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-14 -right-14 h-56 w-56 rounded-full bg-cyan-300/25 blur-3xl" />
+          <Reveal className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-[#3c3c3c] bg-[#1e1e1e] p-8 shadow-[0_30px_85px_rgba(0,0,0,0.6)] backdrop-blur-2xl md:p-12">
+            <div className="pointer-events-none absolute inset-0 opacity-15 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:42px_42px]" />
 
             <div className="relative z-10 text-center">
-              <p className="mb-3 text-xs uppercase tracking-[0.35em] text-cyan-200/80">
+              <p className="mb-3 text-xs uppercase tracking-[0.35em] text-zinc-400 font-bold">
                 Contact
               </p>
               <h2 className="font-poppins text-balance text-4xl font-semibold text-white md:text-6xl">
@@ -2065,43 +2063,43 @@ export default function Home() {
                 onClick={handleCopyEmail}
                 whileHover={{ y: -4, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative rounded-2xl border border-white/15 bg-black/30 p-5 text-left transition-colors hover:border-cyan-300/45"
+                className="group relative rounded-2xl border border-[#3c3c3c] bg-[#111111] p-5 text-left transition-all duration-300 hover:border-white shadow-[0_4px_20px_rgba(0,0,0,0.4)] overflow-hidden"
               >
-                <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-r from-violet-400/0 via-cyan-300/35 to-violet-400/0 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="pointer-events-none absolute -top-9 left-4 rounded-md border border-white/20 bg-black/85 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-cyan-200 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[150%]" />
+                <span className="pointer-events-none absolute -top-9 left-4 rounded-md border border-[#3c3c3c] bg-black/90 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-zinc-300 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                   Copy Email
                 </span>
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-cyan-200/90">
+                <div className="mb-2 flex items-center justify-between relative z-10">
+                  <span className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-zinc-400">
                     <Mail className="h-4 w-4" />
                     Email
                   </span>
                   {copiedEmail ? (
-                    <Check className="h-4 w-4 text-emerald-300" />
+                    <Check className="h-4 w-4 text-emerald-400" />
                   ) : (
-                    <Copy className="h-4 w-4 text-zinc-300 transition-colors group-hover:text-cyan-200" />
+                    <Copy className="h-4 w-4 text-zinc-400 transition-colors group-hover:text-white" />
                   )}
                 </div>
-                <span className="bg-gradient-to-r from-violet-200 to-cyan-200 bg-clip-text text-lg font-semibold text-transparent">
+                <span className="relative z-10 text-lg font-semibold text-white">
                   fazilraphi14@gmail.com
                 </span>
-                <p className="mt-1 text-sm text-zinc-300/75">
+                <p className="relative z-10 mt-1 text-sm text-zinc-400">
                   {copiedEmail ? "Copied to clipboard" : "Click to copy"}
                 </p>
               </motion.button>
 
               <motion.div
                 whileHover={{ y: -4, scale: 1.01 }}
-                className="rounded-2xl border border-white/15 bg-black/30 p-5 text-left"
+                className="rounded-2xl border border-[#3c3c3c] bg-[#111111] p-5 text-left shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
               >
-                <p className="mb-2 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-cyan-200/90">
+                <p className="mb-2 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-zinc-400">
                   <MapPin className="h-4 w-4" />
                   Location
                 </p>
                 <p className="text-lg font-semibold text-zinc-100">
                   Kochi, India
                 </p>
-                <p className="mt-1 text-sm text-zinc-300/75">
+                <p className="mt-1 text-sm text-zinc-400">
                   Available for remote collaboration
                 </p>
               </motion.div>
@@ -2129,20 +2127,19 @@ export default function Home() {
                   rel="noreferrer"
                   whileHover={{ y: -3, scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="group relative inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/35 px-5 py-3 text-zinc-100 transition-colors hover:border-cyan-300/50 hover:text-cyan-100"
+                  className="group relative inline-flex items-center gap-3 rounded-full border border-[#3c3c3c] bg-[#111111] px-5 py-3 text-zinc-100 transition-all duration-300 hover:border-white hover:text-white overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.3)]"
                 >
-                  <div className="pointer-events-none absolute -inset-px rounded-full bg-gradient-to-r from-violet-400/0 via-cyan-300/35 to-violet-400/0 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
-                  <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md border border-white/20 bg-black/85 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-cyan-200 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[150%]" />
+                  <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md border border-[#3c3c3c] bg-black/90 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-zinc-300 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                     {tooltip}
                   </span>
-                  <span className="rounded-full border border-white/20 bg-white/5 p-2 transition-colors group-hover:border-cyan-300/45">
+                  <span className="rounded-full border border-[#3c3c3c] bg-[#1e1e1e] p-2 transition-colors group-hover:border-white">
                     <Icon className="h-4 w-4" />
                   </span>
                   <span className="relative text-sm font-medium">
                     {label}
-                    <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-violet-300 to-cyan-300 transition-transform duration-300 group-hover:scale-x-100" />
                   </span>
-                  <ExternalLink className="h-3.5 w-3.5 text-cyan-200/80" />
+                  <ExternalLink className="h-3.5 w-3.5 text-zinc-400 transition-colors group-hover:text-white" />
                 </motion.a>
               ))}
             </div>
@@ -2150,11 +2147,11 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 px-6 py-10">
+      <footer className="border-t border-[#3c3c3c] bg-[#000000] px-6 py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
           <div>
-            <h3 className="text-2xl font-black">
-              Always<span className="text-cyan-300"> Learning</span>
+            <h3 className="text-2xl font-black text-white">
+              Always <span className="text-zinc-400">Learning</span>
             </h3>
             <p className="mt-2 text-zinc-400">
               Practise is the mother of learning
@@ -2169,10 +2166,12 @@ export default function Home() {
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noreferrer" : undefined}
                 aria-label={label}
-                whileHover={{ y: -3, scale: 1.06 }}
-                className="rounded-xl border border-white/15 bg-white/5 p-3 transition-colors hover:border-cyan-300/45 hover:bg-cyan-300/10"
+                whileHover={{ y: -3, scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative flex h-10 w-10 items-center justify-center rounded-xl border border-[#3c3c3c] bg-[#111111] p-2.5 text-zinc-400 transition-all duration-300 hover:border-white hover:text-white hover:bg-[#1e1e1e] overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.4)]"
               >
-                <Icon className="h-5 w-5" />
+                <Icon className="h-5 w-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[150%]" />
               </motion.a>
             ))}
           </div>

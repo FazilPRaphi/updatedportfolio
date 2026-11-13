@@ -29,6 +29,7 @@ import {
   Zap,
   FlaskConical,
   ScrollText,
+  X,
 } from "lucide-react";
 import {
   FiGithub as Github,
@@ -452,11 +453,11 @@ function Reveal({ children, className = "", once = true, amount = 0.2 }) {
 
 function SectionTitle({ title, subtitle }) {
   return (
-    <Reveal className="mb-14 text-center">
-      <p className="mb-3 text-xs uppercase tracking-[0.35em] text-zinc-400">
+    <Reveal className="mb-10 text-center sm:mb-14">
+      <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-400 sm:tracking-[0.35em]">
         {subtitle}
       </p>
-      <h2 className="text-balance text-4xl font-bold text-white md:text-5xl">
+      <h2 className="text-balance text-3xl font-bold text-white sm:text-4xl md:text-5xl">
         {title}
       </h2>
     </Reveal>
@@ -1186,13 +1187,13 @@ function SolarSystem() {
   }, []);
 
   return (
-    <div className="relative flex items-center justify-center w-full select-none">
+    <div className="relative flex min-w-0 w-full items-center justify-center select-none">
       {/* Background subtle monochrome ethereal atmospheric glow */}
-      <div className="pointer-events-none absolute h-[380px] w-[380px] rounded-full bg-white/[0.03] blur-3xl sm:h-[480px] sm:w-[480px] lg:h-[600px] lg:w-[600px]" />
-      <div className="pointer-events-none absolute h-[300px] w-[300px] rounded-full bg-zinc-500/[0.03] blur-2xl lg:h-[480px] lg:w-[480px]" />
+      <div className="pointer-events-none absolute h-[280px] w-[280px] rounded-full bg-white/[0.03] blur-3xl sm:h-[480px] sm:w-[480px] lg:h-[600px] lg:w-[600px]" />
+      <div className="pointer-events-none absolute h-[220px] w-[220px] rounded-full bg-zinc-500/[0.03] blur-2xl sm:h-[300px] sm:w-[300px] lg:h-[480px] lg:w-[480px]" />
 
       {/* Full-size responsive 3D WebGL Canvas Viewport */}
-      <div className="relative w-full h-[400px] xs:h-[440px] sm:h-[500px] md:h-[560px] lg:h-[620px] xl:h-[680px]">
+      <div className="relative h-[340px] w-full min-w-0 sm:h-[500px] md:h-[560px] lg:h-[620px] xl:h-[680px]">
         {mounted ? (
           <Canvas
             camera={{ position: [0, 6.8, 14.0], fov: 46 }}
@@ -1328,8 +1329,8 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(77,77,77,0.12),transparent_40%),radial-gradient(circle_at_80%_15%,rgba(60,60,60,0.14),transparent_40%),radial-gradient(circle_at_50%_100%,rgba(30,30,30,0.25),transparent_45%)]" />
       <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:72px_72px]" />
 
-      <nav className="fixed inset-x-0 top-4 z-50 px-4 sm:px-6">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-2xl border border-[#3c3c3c] bg-[#111111]/85 px-5 py-3 shadow-[0_8px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
+      <nav className="fixed inset-x-0 top-3 z-50 px-3 sm:top-4 sm:px-6">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-2xl border border-[#3c3c3c] bg-[#111111]/85 px-3 py-2.5 shadow-[0_8px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl sm:px-5 sm:py-3">
           <a
             href="#home"
             className="text-lg font-semibold tracking-[0.2em] text-white sm:text-xl"
@@ -1368,16 +1369,18 @@ export default function Home() {
 
           <button
             type="button"
-            className="rounded-lg border border-[#3c3c3c] bg-[#1e1e1e] p-2 text-zinc-100 transition-colors hover:border-white hover:text-white lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-lg border border-[#3c3c3c] bg-[#1e1e1e] text-zinc-100 transition-colors hover:border-white hover:text-white lg:hidden"
             onClick={() => setOpen((prev) => !prev)}
-            aria-label="Toggle navigation"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            aria-expanded={open}
+            aria-controls={open ? "mobile-navigation" : undefined}
           >
-            <Menu className="h-5 w-5" />
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
         {open ? (
-          <div className="mx-auto mt-2 max-w-7xl rounded-2xl border border-[#3c3c3c] bg-[#111111]/95 p-4 backdrop-blur-2xl lg:hidden">
+          <div id="mobile-navigation" className="mx-auto mt-2 max-w-7xl rounded-2xl border border-[#3c3c3c] bg-[#111111]/95 p-4 backdrop-blur-2xl lg:hidden">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <a
@@ -1396,10 +1399,10 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative px-6 pb-20 pt-32 sm:pt-36 lg:pb-28 lg:pt-40"
+        className="relative scroll-mt-24 px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-36 lg:pb-28 lg:pt-40"
       >
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 lg:grid-cols-[46%_54%] xl:gap-12">
-          <Reveal className="relative z-10 flex flex-col justify-center">
+        <div className="mx-auto grid w-full min-w-0 max-w-7xl items-center gap-8 lg:grid-cols-[minmax(0,46fr)_minmax(0,54fr)] xl:gap-12">
+          <Reveal className="relative z-10 flex min-w-0 flex-col justify-center">
             <h1 className="font-poppins text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] leading-[1.14]">
               Building{" "}
               <span className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
@@ -1473,13 +1476,13 @@ export default function Home() {
             </motion.div>
           </Reveal>
 
-          <div className="relative w-full flex items-center justify-center overflow-visible">
+          <div className="relative flex w-full min-w-0 items-center justify-center overflow-visible">
             <SolarSystem />
           </div>
         </div>
       </section>
 
-      <section id="about" className="relative px-6 py-28 md:py-36">
+      <section id="about" className="relative scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28 md:py-36">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(60,60,60,0.18),transparent_40%),radial-gradient(circle_at_80%_65%,rgba(77,77,77,0.15),transparent_46%)]" />
 
         <div className="mx-auto max-w-7xl">
@@ -1519,7 +1522,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="skills" className="px-6 py-28 md:py-32">
+      <section id="skills" className="scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28 md:py-32">
         <div className="mx-auto max-w-7xl">
           <SectionTitle title="Skills and Technologies" subtitle="Tech Stack" />
 
@@ -1535,7 +1538,7 @@ export default function Home() {
                 variants={revealVariant}
                 whileHover={{ y: -6, scale: 1.01 }}
                 key={category}
-                className="group relative overflow-hidden rounded-3xl border border-[#3c3c3c] bg-[#1e1e1e] p-7 shadow-[0_16px_45px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-[#4d4d4d]"
+                className="group relative overflow-hidden rounded-3xl border border-[#3c3c3c] bg-[#1e1e1e] p-5 shadow-[0_16px_45px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-[#4d4d4d] sm:p-7"
               >
                 {/* Subtle light glow on hover */}
                 <div className="pointer-events-none absolute -top-10 -right-10 h-32 w-32 rounded-full bg-white/[0.04] blur-2xl transition-opacity duration-500 group-hover:opacity-100 opacity-40" />
@@ -1574,7 +1577,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="px-6 py-28 md:py-32">
+      <section id="projects" className="scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28 md:py-32">
         <div className="mx-auto max-w-7xl">
           <SectionTitle title="Project Showcase" subtitle="Portfolio" />
 
@@ -1596,7 +1599,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="experience" className="relative px-6 py-28 md:py-32">
+      <section id="experience" className="relative scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28 md:py-32">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(60,60,60,0.2),transparent_42%),radial-gradient(circle_at_85%_65%,rgba(77,77,77,0.15),transparent_48%)]" />
 
         <div className="relative mx-auto max-w-7xl">
@@ -1606,7 +1609,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-28 md:py-32">
+      <section className="px-4 py-20 sm:px-6 sm:py-28 md:py-32">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             title="Education and Certifications"
@@ -1615,7 +1618,7 @@ export default function Home() {
 
           {/* ── Education Card ── */}
           <Reveal className="mb-10">
-            <div className="relative overflow-hidden rounded-3xl border border-[#3c3c3c] bg-[#1e1e1e] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-xl md:p-10">
+            <div className="relative overflow-hidden rounded-3xl border border-[#3c3c3c] bg-[#1e1e1e] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-8 md:p-10">
               <div className="pointer-events-none absolute inset-0 opacity-15 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:36px_36px]" />
 
               <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
@@ -2019,10 +2022,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-28 md:py-32">
-        <Reveal className="mx-auto max-w-5xl rounded-[40px] border border-[#3c3c3c] bg-[#1e1e1e] p-14 text-center backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-          <h2 className="mb-6 text-5xl font-black text-white">Resume</h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg leading-8 text-zinc-200/90">
+      <section className="px-4 py-20 sm:px-6 sm:py-28 md:py-32">
+        <Reveal className="mx-auto max-w-5xl rounded-[2rem] border border-[#3c3c3c] bg-[#1e1e1e] p-6 text-center backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] sm:rounded-[40px] sm:p-10 md:p-14">
+          <h2 className="mb-5 text-4xl font-black text-white sm:mb-6 sm:text-5xl">Resume</h2>
+          <p className="mx-auto mb-8 max-w-2xl text-base leading-7 text-zinc-200/90 sm:mb-10 sm:text-lg sm:leading-8">
             Explore a complete overview of projects, technical expertise,
             engineering experience, and professional achievements.
           </p>
@@ -2038,10 +2041,10 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section id="contact" className="relative w-full px-0 py-28 md:py-32">
+      <section id="contact" className="relative w-full scroll-mt-24 px-0 py-20 sm:py-28 md:py-32">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(60,60,60,0.2),transparent_45%),radial-gradient(circle_at_82%_76%,rgba(77,77,77,0.18),transparent_52%)]" />
-        <div className="mx-auto w-full max-w-7xl px-6">
-          <Reveal className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-[#3c3c3c] bg-[#1e1e1e] p-8 shadow-[0_30px_85px_rgba(0,0,0,0.6)] backdrop-blur-2xl md:p-12">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+          <Reveal className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.5rem] border border-[#3c3c3c] bg-[#1e1e1e] p-5 shadow-[0_30px_85px_rgba(0,0,0,0.6)] backdrop-blur-2xl sm:rounded-[2rem] sm:p-8 md:p-12">
             <div className="pointer-events-none absolute inset-0 opacity-15 [background-image:linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] [background-size:42px_42px]" />
 
             <div className="relative z-10 text-center">
@@ -2080,7 +2083,7 @@ export default function Home() {
                     <Copy className="h-4 w-4 text-zinc-400 transition-colors group-hover:text-white" />
                   )}
                 </div>
-                <span className="relative z-10 text-lg font-semibold text-white">
+                <span className="relative z-10 break-words text-base font-semibold text-white sm:text-lg">
                   fazilraphi14@gmail.com
                 </span>
                 <p className="relative z-10 mt-1 text-sm text-zinc-400">

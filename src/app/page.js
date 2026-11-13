@@ -58,7 +58,6 @@ import {
   SiGithubactions,
   SiPostman,
   SiApachehive,
-  SiRedis,
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 import { useEffect, useMemo, useState } from "react";
@@ -77,7 +76,7 @@ const skillsWithIcons = {
     { name: "Express", Icon: SiExpress, color: "#A0AEC0" },
     { name: "Firebase", Icon: SiFirebase, color: "#FFCA28" },
     { name: "Hive", Icon: SiApachehive, color: "#FDCC00" },
-    { name: "Redis", Icon: SiRedis, color: "#FF4438" },
+    { name: "SQLite", Icon: Database, color: "#003B57" },
   ],
   Database: [
     { name: "MongoDB", Icon: SiMongodb, color: "#4DB33D" },
@@ -105,19 +104,6 @@ const skillsWithIcons = {
 
 const projects = [
   {
-    title: "HEALTHCARE AI",
-    desc: "A ML project that predicts number of days to stay in hospital, bill amount prediction, and outcome prediction based on symptoms.",
-    tags: ["Machine Learning", "Healthcare AI", "Prediction Systems"],
-    features: ["Stay days prediction", "Bill amount prediction", "Outcome prediction"],
-    preview: "Clinical Forecast Engine",
-    accent: "from-fuchsia-500/35 via-violet-500/25 to-cyan-400/30",
-    featured: true,
-    links: {
-      live: "https://healthcare-ai-system-five.vercel.app/",
-      github: "https://github.com/FazilPRaphi/healthcare-ai-system",
-    },
-  },
-  {
     title: "SMART LOAN RISK PREDICTOR",
     desc: "An ML project that takes form input values to predict whether a loan request will be approved or not.",
     tags: ["ML Classification", "Risk Analysis", "Form Intelligence"],
@@ -127,18 +113,6 @@ const projects = [
     links: {
       live: "https://loanfrontend-three.vercel.app/",
       github: "https://github.com/FazilPRaphi/loanfrontend",
-    },
-  },
-  {
-    title: "PORTFOLIO APP",
-    desc: "Designed a Portfolio application using Next.js as frontend with Supabase as backend.",
-    tags: ["Next.js", "Supabase", "Frontend Systems"],
-    features: ["Dynamic portfolio management", "Backend-powered content flow"],
-    preview: "Personal Brand Platform",
-    accent: "from-violet-500/35 via-sky-500/20 to-cyan-300/30",
-    links: {
-      live: "/",
-      github: "https://github.com/FazilPRaphi/fazil-portfolio",
     },
   },
   {
@@ -179,18 +153,6 @@ const projects = [
     },
   },
   {
-    title: "BLIG.",
-    desc: "An online Next.js blog platform using PostgreSQL database with Flask backend integration and Cloudinary image/video uploads.",
-    tags: ["Next.js", "PostgreSQL", "Flask", "Cloudinary"],
-    features: ["Media uploads", "Integrated backend pipeline"],
-    preview: "Content Publishing Grid",
-    accent: "from-rose-500/30 via-violet-500/20 to-indigo-500/30",
-    links: {
-      live: "https://blogs-frontend-one-xi.vercel.app/",
-      github: "https://github.com/FazilPRaphi/blig_blogs",
-    },
-  },
-  {
     title: "ATS-TRACK PDFs",
     desc: "Developed ATS Track, a full-stack PDF toolkit application using React, Node.js, pdf-lib, and async job handling.",
     tags: ["React", "Node.js", "pdf-lib", "Async Jobs"],
@@ -219,39 +181,6 @@ const projects = [
     links: {
       live: "https://synapse-frontend-amber.vercel.app/",
       github: "https://github.com/FazilPRaphi/Synapse",
-    },
-  },
-  {
-    title: "HEALTHSYNC AI CHATBOT",
-    desc: "A medical chatbot that provides disease predictions based on user symptoms using AI-driven response generation.",
-    tags: ["Conversational AI", "Healthcare", "Prediction Model"],
-    features: ["Symptom-aware responses", "Disease prediction flow"],
-    preview: "Medical Assist Agent",
-    accent: "from-emerald-500/30 via-blue-500/25 to-violet-500/30",
-    links: {
-      github: "https://github.com/FazilPRaphi/chatbot-healthcare-healthsync",
-    },
-  },
-  {
-    title: "WEATHER APP",
-    desc: "A React Native weather application delivering real-time weather updates, location-based forecasts, dynamic weather UI, and API-driven weather rendering.",
-    tags: ["React Native", "Weather APIs", "Mobile UI"],
-    features: ["Real-time updates", "Location forecasts", "Dynamic weather rendering"],
-    preview: "Forecast Companion",
-    accent: "from-sky-500/35 via-cyan-400/25 to-indigo-500/30",
-    links: {
-      github: "https://github.com/FazilPRaphi/weatherapp",
-    },
-  },
-  {
-    title: "TODO APP",
-    desc: "A simple todo application created at the beginning of the React learning journey.",
-    tags: ["React Basics", "State Management"],
-    features: ["Task add/remove flow", "First React fundamentals"],
-    preview: "Task Starter Kit",
-    accent: "from-zinc-500/25 via-violet-500/20 to-cyan-400/25",
-    links: {
-      github: "https://github.com/FazilPRaphi/blog-app",
     },
   },
 ];
@@ -319,6 +248,14 @@ const experience = [
       "Focused on mobile app architecture, Flutter UI systems, performance optimization, cross-platform development, and interactive mobile experiences.",
     badges: ["App Architecture", "Flutter UI", "Performance", "Cross-Platform"],
     icon: Rocket,
+  },
+  {
+    date: "October 2026",
+    role: "AI/ML Intern",
+    organization: "Technologics",
+    description: "AI/ML internship at Technologics.",
+    badges: ["AI/ML"],
+    icon: Brain,
   },
 ];
 
@@ -1727,6 +1664,129 @@ export default function Home() {
           >
             {[
               {
+                title: "Q2D PEARL State Level Assessment",
+                issuer: "IBM Innovation Centre for Education in collaboration with Q2D",
+                date: "23 Oct 2026",
+                icon: BarChart2,
+                color: "#C0C0C0",
+                glow: "rgba(192,192,192,0.18)",
+                tag: "Silver Badge",
+                details: "93% · Data Science - UG Level 1",
+              },
+              {
+                title: "Q2D PEARL UG Level 1",
+                issuer: "IBM",
+                date: "Academic year 2026-27",
+                icon: GraduationCap,
+                color: "#CD7F32",
+                glow: "rgba(205,127,50,0.18)",
+                tag: "Bronze Certificate",
+                details: "Grade A · Data Science",
+              },
+              {
+                title: "Q2D PEARL Assessment",
+                issuer: "IBM",
+                date: "21 Jul 2026",
+                icon: BarChart2,
+                color: "#60A5FA",
+                glow: "rgba(96,165,250,0.18)",
+                tag: "Completion",
+                details: "100% · Data Science - UG Level 1",
+              },
+              {
+                title: "Virtual Data Science Explorer",
+                issuer: "YuvaIntern · NSDC",
+                date: "27 Aug 2026",
+                icon: Brain,
+                color: "#A78BFA",
+                glow: "rgba(167,139,250,0.18)",
+                tag: "Internship",
+                details: "Virtual Data Science Explorer Intern",
+              },
+              {
+                title: "MERN Stack Internship",
+                issuer: "Mertxe",
+                date: "12 Aug - 16 Sep 2026",
+                icon: Code2,
+                color: "#34D399",
+                glow: "rgba(52,211,153,0.18)",
+                tag: "MERN Stack",
+                details: "MERN Stack Intern · HomelyHub Property Booking Platform",
+              },
+              {
+                title: "Microsoft Azure Essentials Professional Certificate",
+                issuer: "Microsoft and LinkedIn",
+                date: "May 2026",
+                icon: Cloud,
+                color: "#38BDF8",
+                glow: "rgba(56,189,248,0.18)",
+                tag: "Professional Certificate",
+                details: "Cloud Computing",
+              },
+              {
+                title: "Career Essentials in GitHub Copilot",
+                issuer: "GitHub",
+                date: "May 2026",
+                icon: Sparkles,
+                color: "#A78BFA",
+                glow: "rgba(167,139,250,0.18)",
+                tag: "Professional Certificate",
+              },
+              {
+                title: "Docker Foundations",
+                issuer: "Docker, Inc.",
+                date: "Jun 2026",
+                icon: FaDocker,
+                color: "#2496ED",
+                glow: "rgba(36,150,237,0.18)",
+                tag: "Professional Certificate",
+                details: "Containerization",
+              },
+              {
+                title: "Optimize Business Processes with Microsoft 365 Copilot",
+                issuer: "Microsoft Learning",
+                date: "Jun 2026",
+                icon: Zap,
+                color: "#FBBF24",
+                glow: "rgba(251,191,36,0.18)",
+                tag: "Microsoft 365 Copilot",
+              },
+              {
+                title: "Learning Docker Compose",
+                issuer: "LinkedIn",
+                date: "Jun 2026",
+                icon: FaDocker,
+                color: "#38BDF8",
+                glow: "rgba(56,189,248,0.18)",
+                tag: "Docker",
+              },
+              {
+                title: "Android Studio User Badge",
+                issuer: "Google for Developers Network - Greater Los Angeles",
+                date: "Oct 2025",
+                icon: Code2,
+                color: "#4ADE80",
+                glow: "rgba(74,222,128,0.18)",
+                tag: "Android",
+              },
+              {
+                title: "Python Coder Badge",
+                issuer: "Kaggle",
+                icon: FaPython,
+                color: "#FFD43B",
+                glow: "rgba(255,212,59,0.18)",
+                tag: "Python",
+              },
+              {
+                title: "5-Day AI Agents Intensive Vibe Coding Course",
+                issuer: "Google x Kaggle",
+                icon: Brain,
+                color: "#4285F4",
+                glow: "rgba(66,133,244,0.18)",
+                tag: "AI Agents",
+                details: "Completed the five-day course · Project: ClaimPilot",
+              },
+              {
                 title: "Python (Basic)",
                 issuer: "HackerRank",
                 date: "Mar 2026",
@@ -1906,27 +1966,9 @@ export default function Home() {
                 glow: "rgba(52,211,153,0.18)",
                 tag: "Full Stack",
               },
-              {
-                title: "Networking Fundamentals",
-                issuer: "Certification Program",
-                date: "2025",
-                icon: Globe,
-                color: "#60A5FA",
-                glow: "rgba(96,165,250,0.18)",
-                tag: "Networking",
-              },
-              {
-                title: "Cloud Computing Basics",
-                issuer: "Certification Program",
-                date: "2025",
-                icon: Cloud,
-                color: "#38BDF8",
-                glow: "rgba(56,189,248,0.18)",
-                tag: "Cloud",
-              },
-            ].map(({ title, issuer, date, icon: Ic, color, glow, tag }) => (
+            ].map(({ title, issuer, date, icon: Ic, color, glow, tag, details }) => (
               <motion.div
-                key={title}
+                key={`${title}-${issuer}`}
                 variants={revealVariant}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 320, damping: 22 }}
@@ -1949,12 +1991,14 @@ export default function Home() {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <p className="truncate text-sm font-semibold leading-snug text-white">{title}</p>
+                    <p className="break-words text-sm font-semibold leading-snug text-white">{title}</p>
                     <p className="mt-0.5 text-xs text-zinc-400">{issuer}</p>
                     <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                      <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-400">
-                        {date}
-                      </span>
+                      {date && (
+                        <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-zinc-400">
+                          {date}
+                        </span>
+                      )}
                       <span
                         className="rounded-full px-2 py-0.5 text-[10px] font-semibold"
                         style={{ background: `${color}20`, color }}
@@ -1962,6 +2006,11 @@ export default function Home() {
                         {tag}
                       </span>
                     </div>
+                    {details && (
+                      <p className="mt-2 text-xs leading-relaxed text-zinc-300">
+                        {details}
+                      </p>
+                    )}
                   </div>
                 </div>
               </motion.div>
